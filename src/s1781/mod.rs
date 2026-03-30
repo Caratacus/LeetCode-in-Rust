@@ -1,0 +1,1 @@
+pub mod sum_of_beauty_of_all_substrings;

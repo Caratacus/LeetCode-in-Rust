@@ -1,0 +1,1 @@
+pub mod minimum_element_after_replacement_with_digit_sum;

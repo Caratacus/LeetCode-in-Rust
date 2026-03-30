@@ -1,0 +1,1 @@
+pub mod sum_of_total_strength_of_wizards;

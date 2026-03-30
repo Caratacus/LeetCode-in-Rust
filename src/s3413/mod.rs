@@ -1,0 +1,1 @@
+pub mod maximum_coins_from_k_consecutive_bags;

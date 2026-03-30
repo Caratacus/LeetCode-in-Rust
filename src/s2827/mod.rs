@@ -1,0 +1,1 @@
+pub mod number_of_beautiful_integers_in_the_range;

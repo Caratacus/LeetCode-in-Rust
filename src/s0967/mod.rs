@@ -1,0 +1,1 @@
+pub mod numbers_with_same_consecutive_differences;

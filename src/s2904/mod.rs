@@ -1,0 +1,1 @@
+pub mod shortest_and_lexicographically_smallest_beautiful_string;

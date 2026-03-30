@@ -1,0 +1,1 @@
+pub mod minimize_the_maximum_edge_weight_of_graph;

@@ -1,0 +1,1 @@
+pub mod shortest_impossible_sequence_of_rolls;

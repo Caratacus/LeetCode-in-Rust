@@ -1,0 +1,1 @@
+pub mod circular_permutation_in_binary_representation;

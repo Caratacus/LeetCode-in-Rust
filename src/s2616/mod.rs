@@ -1,0 +1,1 @@
+pub mod minimize_the_maximum_difference_of_pairs;

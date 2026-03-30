@@ -1,0 +1,1 @@
+pub mod smallest_number_with_all_set_bits;

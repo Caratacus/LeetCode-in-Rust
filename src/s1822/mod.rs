@@ -1,0 +1,1 @@
+pub mod sign_of_the_product_of_an_array;

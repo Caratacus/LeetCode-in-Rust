@@ -1,0 +1,1 @@
+pub mod removing_minimum_and_maximum_from_array;

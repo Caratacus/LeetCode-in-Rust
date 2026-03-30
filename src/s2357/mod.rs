@@ -1,0 +1,1 @@
+pub mod make_array_zero_by_subtracting_equal_amounts;

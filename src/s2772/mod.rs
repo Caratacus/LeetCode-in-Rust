@@ -1,0 +1,1 @@
+pub mod apply_operations_to_make_all_array_elements_equal_to_zero;

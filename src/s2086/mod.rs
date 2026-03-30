@@ -1,0 +1,1 @@
+pub mod minimum_number_of_buckets_required_to_collect_rainwater_from_houses;

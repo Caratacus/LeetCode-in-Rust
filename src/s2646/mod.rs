@@ -1,0 +1,1 @@
+pub mod minimize_the_total_price_of_the_trips;

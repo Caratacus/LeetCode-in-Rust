@@ -1,0 +1,1 @@
+pub mod maximum_area_of_longest_diagonal_rectangle;

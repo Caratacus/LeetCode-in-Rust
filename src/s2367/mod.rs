@@ -1,0 +1,1 @@
+pub mod number_of_arithmetic_triplets;

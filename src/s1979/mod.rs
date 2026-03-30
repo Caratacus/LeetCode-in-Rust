@@ -1,0 +1,1 @@
+pub mod find_greatest_common_divisor_of_array;

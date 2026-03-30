@@ -1,0 +1,1 @@
+pub mod number_of_pairs_of_interchangeable_rectangles;

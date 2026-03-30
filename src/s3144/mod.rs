@@ -1,0 +1,1 @@
+pub mod minimum_substring_partition_of_equal_character_frequency;

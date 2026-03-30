@@ -1,0 +1,1 @@
+pub mod find_the_sum_of_the_power_of_all_subsequences;

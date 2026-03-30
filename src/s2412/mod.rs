@@ -1,0 +1,1 @@
+pub mod minimum_money_required_before_transactions;

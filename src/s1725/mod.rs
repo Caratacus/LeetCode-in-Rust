@@ -1,0 +1,1 @@
+pub mod number_of_rectangles_that_can_form_the_largest_square;

@@ -1,0 +1,1 @@
+pub mod minimum_interval_to_include_each_query;

@@ -1,0 +1,1 @@
+pub mod minimum_average_of_smallest_and_largest_elements;

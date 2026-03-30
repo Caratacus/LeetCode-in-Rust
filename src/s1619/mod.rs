@@ -1,0 +1,1 @@
+pub mod mean_of_array_after_removing_some_elements;

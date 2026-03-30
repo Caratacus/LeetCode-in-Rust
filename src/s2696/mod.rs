@@ -1,0 +1,1 @@
+pub mod minimum_string_length_after_removing_substrings;

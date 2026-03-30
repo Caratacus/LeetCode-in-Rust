@@ -1,0 +1,1 @@
+pub mod minimum_operations_to_convert_all_elements_to_zero;

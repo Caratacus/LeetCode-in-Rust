@@ -1,0 +1,1 @@
+pub mod maximum_amount_of_money_robot_can_earn;

@@ -1,0 +1,1 @@
+pub mod smallest_index_with_digit_sum_equal_to_index;

@@ -1,0 +1,1 @@
+pub mod restore_the_array_from_adjacent_pairs;

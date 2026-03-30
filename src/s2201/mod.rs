@@ -1,0 +1,1 @@
+pub mod count_artifacts_that_can_be_extracted;

@@ -1,0 +1,1 @@
+pub mod split_array_with_minimum_difference;

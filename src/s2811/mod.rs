@@ -1,0 +1,1 @@
+pub mod check_if_it_is_possible_to_split_array;

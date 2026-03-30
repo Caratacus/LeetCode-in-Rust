@@ -1,0 +1,1 @@
+pub mod maximum_subarray_with_equal_products;

@@ -1,0 +1,1 @@
+pub mod check_if_all_characters_have_equal_number_of_occurrences;

@@ -1,0 +1,1 @@
+pub mod redistribute_characters_to_make_all_strings_equal;

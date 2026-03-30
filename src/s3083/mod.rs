@@ -1,0 +1,1 @@
+pub mod existence_of_a_substring_in_a_string_and_its_reverse;

@@ -1,0 +1,1 @@
+pub mod difference_between_maximum_and_minimum_price_sum;

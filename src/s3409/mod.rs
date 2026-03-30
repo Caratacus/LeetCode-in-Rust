@@ -1,0 +1,1 @@
+pub mod longest_subsequence_with_decreasing_adjacent_difference;

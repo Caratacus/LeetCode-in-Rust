@@ -1,0 +1,1 @@
+pub mod minimum_amount_of_time_to_collect_garbage;

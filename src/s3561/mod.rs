@@ -1,0 +1,1 @@
+pub mod resulting_string_after_adjacent_removals;

@@ -1,0 +1,1 @@
+pub mod palindrome_rearrangement_queries;

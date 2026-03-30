@@ -1,0 +1,1 @@
+pub mod number_of_ways_to_earn_points;

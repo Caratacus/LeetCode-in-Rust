@@ -1,0 +1,1 @@
+pub mod maximize_the_distance_between_points_on_a_square;

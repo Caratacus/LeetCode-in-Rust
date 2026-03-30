@@ -1,0 +1,1 @@
+pub mod longest_substring_of_one_repeating_character;

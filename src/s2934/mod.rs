@@ -1,0 +1,1 @@
+pub mod minimum_operations_to_maximize_last_elements_in_arrays;

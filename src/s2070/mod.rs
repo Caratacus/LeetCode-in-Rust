@@ -1,0 +1,1 @@
+pub mod most_beautiful_item_for_each_query;

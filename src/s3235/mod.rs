@@ -1,0 +1,1 @@
+pub mod check_if_the_rectangle_corner_is_reachable;

@@ -1,0 +1,1 @@
+pub mod minimum_adjacent_swaps_to_alternate_parity;

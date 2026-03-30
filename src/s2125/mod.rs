@@ -1,0 +1,1 @@
+pub mod number_of_laser_beams_in_a_bank;

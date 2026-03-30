@@ -1,0 +1,1 @@
+pub mod adjacent_increasing_subarrays_detection_i;

@@ -1,0 +1,1 @@
+pub mod minimum_white_tiles_after_covering_with_carpets;

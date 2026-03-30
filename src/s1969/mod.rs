@@ -1,0 +1,1 @@
+pub mod minimum_non_zero_product_of_the_array_elements;

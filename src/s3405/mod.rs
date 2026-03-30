@@ -1,0 +1,1 @@
+pub mod count_the_number_of_arrays_with_k_matching_adjacent_elements;

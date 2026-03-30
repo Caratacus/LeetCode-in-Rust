@@ -1,0 +1,1 @@
+pub mod coordinate_with_maximum_network_quality;

@@ -1,0 +1,1 @@
+pub mod can_make_arithmetic_progression_from_sequence;

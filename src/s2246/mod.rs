@@ -1,0 +1,1 @@
+pub mod longest_path_with_different_adjacent_characters;

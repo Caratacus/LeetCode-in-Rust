@@ -1,0 +1,1 @@
+pub mod two_furthest_houses_with_different_colors;

@@ -1,0 +1,1 @@
+pub mod xor_after_range_multiplication_queries_i;

@@ -1,0 +1,1 @@
+pub mod moving_stones_until_consecutive;

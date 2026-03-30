@@ -1,0 +1,1 @@
+pub mod smallest_value_of_the_rearranged_number;

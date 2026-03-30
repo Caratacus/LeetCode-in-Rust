@@ -1,0 +1,1 @@
+pub mod concatenation_of_consecutive_binary_numbers;

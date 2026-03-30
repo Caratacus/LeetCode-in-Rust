@@ -1,0 +1,1 @@
+pub mod partition_string_into_minimum_beautiful_substrings;

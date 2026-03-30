@@ -1,0 +1,1 @@
+pub mod process_restricted_friend_requests;

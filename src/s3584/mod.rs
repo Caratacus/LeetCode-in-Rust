@@ -1,0 +1,1 @@
+pub mod maximum_product_of_first_and_last_elements_of_a_subsequence;

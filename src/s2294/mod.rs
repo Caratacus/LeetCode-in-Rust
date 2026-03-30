@@ -1,0 +1,1 @@
+pub mod partition_array_such_that_maximum_difference_is_k;

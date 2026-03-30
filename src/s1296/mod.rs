@@ -1,0 +1,1 @@
+pub mod divide_array_in_sets_of_k_consecutive_numbers;

@@ -1,0 +1,1 @@
+pub mod flower_planting_with_no_adjacent;

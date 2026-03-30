@@ -1,0 +1,1 @@
+pub mod smallest_value_after_replacing_with_sum_of_prime_factors;

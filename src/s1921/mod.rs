@@ -1,0 +1,1 @@
+pub mod eliminate_maximum_number_of_monsters;

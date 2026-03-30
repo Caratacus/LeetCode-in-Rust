@@ -1,0 +1,1 @@
+pub mod minimize_the_maximum_adjacent_element_difference;

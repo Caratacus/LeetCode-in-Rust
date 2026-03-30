@@ -1,0 +1,1 @@
+pub mod remove_stones_to_minimize_the_total;

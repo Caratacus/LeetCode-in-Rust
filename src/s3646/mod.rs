@@ -1,0 +1,1 @@
+pub mod next_special_palindrome_number;

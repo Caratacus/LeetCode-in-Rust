@@ -1,0 +1,1 @@
+pub mod longest_square_streak_in_an_array;

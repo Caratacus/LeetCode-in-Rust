@@ -1,0 +1,1 @@
+pub mod minimum_number_of_operations_to_move_all_balls_to_each_box;

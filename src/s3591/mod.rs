@@ -1,0 +1,1 @@
+pub mod check_if_any_element_has_prime_frequency;

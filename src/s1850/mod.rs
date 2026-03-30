@@ -1,0 +1,1 @@
+pub mod minimum_adjacent_swaps_to_reach_the_kth_smallest_number;

@@ -1,0 +1,1 @@
+pub mod get_maximum_in_generated_array;

@@ -1,0 +1,1 @@
+pub mod find_the_sequence_of_strings_appeared_on_the_screen;

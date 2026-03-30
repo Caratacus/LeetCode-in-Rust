@@ -1,0 +1,1 @@
+pub mod check_if_the_number_is_fascinating;

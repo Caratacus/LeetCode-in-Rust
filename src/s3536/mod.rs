@@ -1,0 +1,1 @@
+pub mod maximum_product_of_two_digits;

@@ -1,0 +1,1 @@
+pub mod apply_operations_on_array_to_maximize_sum_of_squares;

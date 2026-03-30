@@ -1,0 +1,1 @@
+pub mod number_of_adjacent_elements_with_the_same_color;

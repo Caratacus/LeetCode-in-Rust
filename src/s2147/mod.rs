@@ -1,0 +1,1 @@
+pub mod number_of_ways_to_divide_a_long_corridor;

@@ -1,0 +1,1 @@
+pub mod minimum_time_to_make_rope_colorful;

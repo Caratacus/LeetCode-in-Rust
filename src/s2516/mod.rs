@@ -1,0 +1,1 @@
+pub mod take_k_of_each_character_from_left_and_right;

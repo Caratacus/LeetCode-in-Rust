@@ -1,0 +1,1 @@
+pub mod find_the_score_of_all_prefixes_of_an_array;

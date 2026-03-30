@@ -1,0 +1,1 @@
+pub mod minimum_addition_to_make_integer_beautiful;

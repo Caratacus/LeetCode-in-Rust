@@ -1,0 +1,1 @@
+pub mod generate_binary_strings_without_adjacent_zeros;

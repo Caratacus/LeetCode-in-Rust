@@ -1,0 +1,1 @@
+pub mod number_of_burgers_with_no_waste_of_ingredients;

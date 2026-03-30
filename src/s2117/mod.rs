@@ -1,0 +1,1 @@
+pub mod abbreviating_the_product_of_a_range;

@@ -1,0 +1,1 @@
+pub mod number_of_ways_to_wear_different_hats_to_each_other;

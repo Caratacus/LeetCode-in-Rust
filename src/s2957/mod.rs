@@ -1,0 +1,1 @@
+pub mod remove_adjacent_almost_equal_characters;

@@ -1,0 +1,1 @@
+pub mod find_the_maximum_number_of_fruits_collected;

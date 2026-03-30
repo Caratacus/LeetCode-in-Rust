@@ -1,0 +1,1 @@
+pub mod swap_for_longest_repeated_character_substring;

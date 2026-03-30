@@ -1,0 +1,1 @@
+pub mod divide_intervals_into_minimum_number_of_groups;

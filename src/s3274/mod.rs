@@ -1,0 +1,1 @@
+pub mod check_if_two_chessboard_squares_have_the_same_color;

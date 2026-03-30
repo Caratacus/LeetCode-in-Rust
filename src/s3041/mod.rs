@@ -1,0 +1,1 @@
+pub mod maximize_consecutive_elements_in_an_array_after_modification;

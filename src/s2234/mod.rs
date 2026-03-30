@@ -1,0 +1,1 @@
+pub mod maximum_total_beauty_of_the_gardens;

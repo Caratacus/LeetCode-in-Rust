@@ -1,0 +1,1 @@
+pub mod minimum_time_to_type_word_using_special_typewriter;

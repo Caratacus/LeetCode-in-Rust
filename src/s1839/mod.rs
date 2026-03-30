@@ -1,0 +1,1 @@
+pub mod longest_substring_of_all_vowels_in_order;

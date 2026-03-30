@@ -1,0 +1,1 @@
+pub mod design_authentication_manager;

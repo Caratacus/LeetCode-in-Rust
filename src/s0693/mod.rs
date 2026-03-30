@@ -1,0 +1,1 @@
+pub mod binary_number_with_alternating_bits;

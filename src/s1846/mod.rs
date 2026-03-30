@@ -1,0 +1,1 @@
+pub mod maximum_element_after_decreasing_and_rearranging;

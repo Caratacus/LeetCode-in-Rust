@@ -1,0 +1,1 @@
+pub mod filter_restaurants_by_vegan_friendly_price_and_distance;

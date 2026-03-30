@@ -1,0 +1,1 @@
+pub mod maximum_sum_obtained_of_any_permutation;

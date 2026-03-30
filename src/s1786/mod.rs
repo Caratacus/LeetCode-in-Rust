@@ -1,0 +1,1 @@
+pub mod number_of_restricted_paths_from_first_to_last_node;

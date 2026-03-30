@@ -1,0 +1,1 @@
+pub mod sum_of_absolute_differences_in_a_sorted_array;

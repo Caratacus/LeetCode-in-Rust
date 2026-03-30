@@ -1,0 +1,1 @@
+pub mod remove_digit_from_number_to_maximize_result;

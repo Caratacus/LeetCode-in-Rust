@@ -1,0 +1,1 @@
+pub mod replace_all_s_to_avoid_consecutive_repeating_characters;

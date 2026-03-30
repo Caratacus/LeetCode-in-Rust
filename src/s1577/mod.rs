@@ -1,0 +1,1 @@
+pub mod number_of_ways_where_square_of_number_is_equal_to_product_of_two_numbers;
