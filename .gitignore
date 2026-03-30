@@ -20,9 +20,10 @@ target
 *.iws
 
 # Claude Code
-.claude/settings.local.json
-.claude/stats/
-.claude/mcp.json
+.claude/
+
+# OpenSpec
+openspec/
 
 # Gemini CLI
 .gemini/
