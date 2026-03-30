@@ -1,3 +1,9 @@
+// Suppress warnings for LeetCode problem templates
+#![allow(unused_variables)]
+#![allow(unused_imports)]
+#![allow(dead_code)]
+#![allow(private_interfaces)]
+
 pub mod common;
 pub mod utils;
 
