@@ -1,32 +1,58 @@
 // Problem 0004: median of two sorted arrays
+// #Hard #Top_100_Liked_Questions #Top_Interview_Questions #Array #Binary_Search #Divide_and_Conquer
+// #Top_Interview_150_Binary_Search #Big_O_Time_O(log(min(N,M)))_Space_O(1)
 
 pub struct Solution;
 
 impl Solution {
     pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-        todo!()
-    }
-}
+        let (nums1, nums2) = if nums2.len() < nums1.len() {
+            (nums2, nums1)
+        } else {
+            (nums1, nums2)
+        };
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+        let n1 = nums1.len();
+        let n2 = nums2.len();
+        let mut low = 0i32;
+        let mut high = n1 as i32;
 
-    // Java: void findMedianSortedArrays()
-    //   assertThat(
-    //   new Solution().findMedianSortedArrays(new int[] {1, 3}, new int[] {2}),
-    //   equalTo(2.0));
-    #[test]
-    fn test_find_median_sorted_arrays() {
-        // TODO: 翻译 Java 测试
-    }
+        while low <= high {
+            let cut1 = (low + high) / 2;
+            let cut2 = ((n1 + n2 + 1) / 2) as i32 - cut1;
 
-    // Java: void findMedianSortedArrays2()
-    //   assertThat(
-    //   new Solution().findMedianSortedArrays(new int[] {1, 2}, new int[] {3, 4}),
-    //   equalTo(2.5));
-    #[test]
-    fn test_find_median_sorted_arrays2() {
-        // TODO: 翻译 Java 测试
+            let l1 = if cut1 == 0 {
+                i32::MIN
+            } else {
+                nums1[cut1 as usize - 1]
+            };
+            let l2 = if cut2 == 0 {
+                i32::MIN
+            } else {
+                nums2[cut2 as usize - 1]
+            };
+            let r1 = if cut1 as usize == n1 {
+                i32::MAX
+            } else {
+                nums1[cut1 as usize]
+            };
+            let r2 = if cut2 as usize == n2 {
+                i32::MAX
+            } else {
+                nums2[cut2 as usize]
+            };
+
+            if l1 <= r2 && l2 <= r1 {
+                if (n1 + n2) % 2 == 0 {
+                    return (l1.max(l2) as f64 + r1.min(r2) as f64) / 2.0;
+                }
+                return l1.max(l2) as f64;
+            } else if l1 > r2 {
+                high = cut1 - 1;
+            } else {
+                low = cut1 + 1;
+            }
+        }
+        0.0
     }
 }

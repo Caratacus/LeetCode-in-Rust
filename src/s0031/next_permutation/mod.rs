@@ -3,7 +3,7 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn next_permutation(nums: Vec<i32>) -> () {
+    pub fn next_permutation(nums: &mut Vec<i32>) {
         todo!()
     }
 }

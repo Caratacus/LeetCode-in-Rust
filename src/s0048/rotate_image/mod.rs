@@ -3,7 +3,7 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn rotate(matrix: Vec<Vec<i32>>) -> () {
+    pub fn rotate(matrix: &mut Vec<Vec<i32>>) {
         todo!()
     }
 }

@@ -36,3 +36,33 @@ pub fn tree_from_vec(vals: Vec<Option<i32>>) -> TreeLink {
 
     Some(root)
 }
+
+/// 将二叉树按层序转为 Vec<Option<i32>>
+pub fn tree_to_vec(root: TreeLink) -> Vec<Option<i32>> {
+    if root.is_none() {
+        return vec![];
+    }
+
+    let mut result = vec![];
+    let mut queue = vec![root];
+
+    while !queue.is_empty() {
+        let node = queue.remove(0);
+
+        if let Some(n) = node {
+            let n = n.borrow();
+            result.push(Some(n.val));
+            queue.push(n.left.clone());
+            queue.push(n.right.clone());
+        } else {
+            result.push(None);
+        }
+    }
+
+    // 移除尾部多余的 None
+    while let Some(None) = result.last() {
+        result.pop();
+    }
+
+    result
+}

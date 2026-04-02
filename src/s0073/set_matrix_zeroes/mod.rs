@@ -3,7 +3,7 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn set_zeroes(matrix: Vec<Vec<i32>>) -> () {
+    pub fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
         todo!()
     }
 }

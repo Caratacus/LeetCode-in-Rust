@@ -1,42 +1,23 @@
 // Problem 0001: two sum
+// #Easy #Top_100_Liked_Questions #Top_Interview_Questions #Array #Hash_Table
+// #Data_Structure_I_Day_2_Array #Level_1_Day_13_Hashmap #Udemy_Arrays #Top_Interview_150_Hashmap
+// #Big_O_Time_O(n)_Space_O(n)
+
+use std::collections::HashMap;
 
 pub struct Solution;
 
 impl Solution {
     pub fn two_sum(numbers: Vec<i32>, target: i32) -> Vec<i32> {
-        todo!()
+        let mut index_map: HashMap<i32, i32> = HashMap::new();
+        for (i, &num) in numbers.iter().enumerate() {
+            let required_num = target - num;
+            if let Some(&prev_index) = index_map.get(&required_num) {
+                return vec![prev_index, i as i32];
+            }
+            index_map.insert(num, i as i32);
+        }
+        vec![-1, -1]
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    // Java: void twoSum()
-    //   assertThat(new Solution().twoSum(new int[] {2, 7, 11, 15}, 9), equalTo(new int[] {0, 1}));
-    #[test]
-    fn test_two_sum() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void twoSum2()
-    //   assertThat(new Solution().twoSum(new int[] {3, 2, 4}, 6), equalTo(new int[] {1, 2}));
-    #[test]
-    fn test_two_sum2() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void twoSum3()
-    //   assertThat(new Solution().twoSum(new int[] {3, 3}, 6), equalTo(new int[] {0, 1}));
-    #[test]
-    fn test_two_sum3() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void twoSum4()
-    //   assertThat(new Solution().twoSum(new int[] {3, 3}, 7), equalTo(new int[] {-1, -1}));
-    #[test]
-    fn test_two_sum4() {
-        // TODO: 翻译 Java 测试
-    }
-}
