@@ -1,13 +1,19 @@
 // Problem 0384: shuffle an array
 
-pub struct Solution;
+pub struct Solution {
+    original: Vec<i32>,
+}
 
 impl Solution {
-    pub fn reset() -> Vec<i32> {
-        todo!()
+    pub fn new(nums: Vec<i32>) -> Self {
+        Self { original: nums }
     }
 
-    pub fn shuffle() -> Vec<i32> {
+    pub fn reset(&self) -> Vec<i32> {
+        self.original.clone()
+    }
+
+    pub fn shuffle(&mut self) -> Vec<i32> {
         todo!()
     }
 }

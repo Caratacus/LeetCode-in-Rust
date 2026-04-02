@@ -1,11 +1,17 @@
 // Problem 0382: linked list random node
 
-use crate::common::list_node::ListNode;
+use crate::common::list_node::{ListLink, ListNode};
 
-pub struct Solution;
+pub struct Solution {
+    head: ListLink,
+}
 
 impl Solution {
-    pub fn get_random() -> i32 {
+    pub fn new(head: ListLink) -> Self {
+        Self { head }
+    }
+
+    pub fn get_random(&self) -> i32 {
         todo!()
     }
 }
