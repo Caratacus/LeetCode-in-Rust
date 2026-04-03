@@ -1,35 +1,48 @@
-// Problem 1575: count all possible routes
+// Problem 1575: Count All Possible Routes
+// #Hard #Array #Dynamic_Programming #Memoization
+// #Big_O_Time_O(n*fuel)_Space_O(n*fuel)
 
 pub struct Solution;
 
+const MOD: i64 = 1_000_000_007;
+
 impl Solution {
     pub fn count_routes(locations: Vec<i32>, start: i32, finish: i32, fuel: i32) -> i32 {
-        todo!()
-    }
-}
+        let n = locations.len();
+        let start = start as usize;
+        let finish = finish as usize;
+        let fuel = fuel as usize;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    // Java: void countRoutes()
-    //   assertThat(new Solution().countRoutes(new int[] {2, 3, 6, 8, 4}, 1, 3, 5), equalTo(4));
-    #[test]
-    fn test_count_routes() {
-        // TODO: 翻译 Java 测试
+        let mut cache = vec![vec![None::<i64>; fuel + 1]; n];
+        Self::dfs(&locations, start, finish, fuel, &mut cache) as i32
     }
 
-    // Java: void countRoutes2()
-    //   assertThat(new Solution().countRoutes(new int[] {4, 3, 1}, 1, 0, 6), equalTo(5));
-    #[test]
-    fn test_count_routes2() {
-        // TODO: 翻译 Java 测试
-    }
+    fn dfs(
+        locations: &[i32],
+        current: usize,
+        finish: usize,
+        fuel: usize,
+        cache: &mut Vec<Vec<Option<i64>>>,
+    ) -> i64 {
+        if let Some(cached) = cache[current][fuel] {
+            return cached;
+        }
 
-    // Java: void countRoutes3()
-    //   assertThat(new Solution().countRoutes(new int[] {5, 2, 1}, 0, 2, 3), equalTo(0));
-    #[test]
-    fn test_count_routes3() {
-        // TODO: 翻译 Java 测试
+        let mut count = 0i64;
+        if current == finish {
+            count = (count + 1) % MOD;
+        }
+
+        for i in 0..locations.len() {
+            if i != current {
+                let cost = (locations[current] - locations[i]).unsigned_abs() as usize;
+                if cost <= fuel {
+                    count = (count + Self::dfs(locations, i, finish, fuel - cost, cache)) % MOD;
+                }
+            }
+        }
+
+        cache[current][fuel] = Some(count);
+        count
     }
 }

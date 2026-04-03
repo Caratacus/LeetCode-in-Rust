@@ -1,35 +1,55 @@
-// Problem 1593: split a string into the max number of unique substrings
+// Problem 1593: Split a String Into the Max Number of Unique Substrings
+// #Medium #String #Hash_Table #Backtracking
+// #Big_O_Time_O(2^n)_Space_O(n)
+
+use std::collections::HashSet;
 
 pub struct Solution;
 
 impl Solution {
     pub fn max_unique_split(s: String) -> i32 {
-        todo!()
-    }
-}
+        let s_bytes = s.as_bytes();
+        let n = s.len();
+        let mut lo = 1;
+        let mut hi = n;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    // Java: void maxUniqueSplit()
-    //   assertThat(new Solution().maxUniqueSplit("ababccc"), equalTo(5));
-    #[test]
-    fn test_max_unique_split() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void maxUniqueSplit2()
-    //   assertThat(new Solution().maxUniqueSplit("aba"), equalTo(2));
-    #[test]
-    fn test_max_unique_split2() {
-        // TODO: 翻译 Java 测试
+        // Binary search
+        while lo < hi {
+            let mid = (lo + hi + 1) / 2;
+            if Self::ok(0, mid, 0, s_bytes, &mut HashSet::new()) {
+                lo = mid;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        lo as i32
     }
 
-    // Java: void maxUniqueSplit3()
-    //   assertThat(new Solution().maxUniqueSplit("aa"), equalTo(1));
-    #[test]
-    fn test_max_unique_split3() {
-        // TODO: 翻译 Java 测试
+    fn ok(
+        depth: usize,
+        end: usize,
+        cur_len: usize,
+        s: &[u8],
+        seen: &mut HashSet<Vec<u8>>,
+    ) -> bool {
+        if depth == end {
+            return true;
+        }
+
+        for j in cur_len..s.len() {
+            // Not enough length remains to reach the end
+            if s.len() - j < end - depth {
+                break;
+            }
+
+            let cur = s[cur_len..=j].to_vec();
+            if seen.insert(cur) {
+                if Self::ok(depth + 1, end, j + 1, s, seen) {
+                    return true;
+                }
+                seen.remove(&s[cur_len..=j].to_vec());
+            }
+        }
+        false
     }
 }

@@ -1,42 +1,26 @@
-// Problem 1572: matrix diagonal sum
+// Problem 1572: Matrix Diagonal Sum
+// #Easy #Array #Matrix
+// #Big_O_Time_O(n)_Space_O(1)
 
 pub struct Solution;
 
 impl Solution {
     pub fn diagonal_sum(mat: Vec<Vec<i32>>) -> i32 {
-        todo!()
-    }
-}
+        let n = mat.len();
+        let mut sum = 0;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+        for i in 0..n {
+            // Primary diagonal (top-left to bottom-right)
+            sum += mat[i][i];
+            // Secondary diagonal (top-right to bottom-left)
+            sum += mat[i][n - 1 - i];
+        }
 
-    // Java: void diagonalSum()
-    //   assertThat(
-    //   new Solution().diagonalSum(new int[][] {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}),
-    //   equalTo(25));
-    #[test]
-    fn test_diagonal_sum() {
-        // TODO: 翻译 Java 测试
-    }
+        // If n is odd, subtract the center element (counted twice)
+        if n % 2 == 1 {
+            sum -= mat[n / 2][n / 2];
+        }
 
-    // Java: void diagonalSum2()
-    //   assertThat(
-    //   new Solution()
-    //   .diagonalSum(
-    //   new int[][] {
-    //   {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}
-    //   ... (2 more lines)
-    #[test]
-    fn test_diagonal_sum2() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void diagonalSum3()
-    //   assertThat(new Solution().diagonalSum(new int[][] {{5}}), equalTo(5));
-    #[test]
-    fn test_diagonal_sum3() {
-        // TODO: 翻译 Java 测试
+        sum
     }
 }

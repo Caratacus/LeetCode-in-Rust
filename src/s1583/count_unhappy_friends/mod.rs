@@ -1,47 +1,80 @@
-// Problem 1583: count unhappy friends
+// Problem 1583: Count Unhappy Friends
+// #Medium #Array #Simulation
+// #Big_O_Time_O(n^2)_Space_O(n)
+
+use std::collections::HashMap;
 
 pub struct Solution;
 
 impl Solution {
     pub fn unhappy_friends(n: i32, preferences: Vec<Vec<i32>>, pairs: Vec<Vec<i32>>) -> i32 {
-        todo!()
-    }
-}
+        let mut unhappy_friends = 0;
+        let mut assigned_pair: HashMap<i32, i32> = HashMap::new();
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+        for pair in &pairs {
+            assigned_pair.insert(pair[0], pair[1]);
+            assigned_pair.insert(pair[1], pair[0]);
+        }
 
-    // Java: void unhappyFriends()
-    //   assertThat(
-    //   new Solution()
-    //   .unhappyFriends(
-    //   4,
-    //   new int[][] {{1, 2, 3}, {3, 2, 0}, {3, 1, 0}, {1, 2, 0}},
-    //   ... (2 more lines)
-    #[test]
-    fn test_unhappy_friends() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void unhappyFriends2()
-    //   assertThat(
-    //   new Solution().unhappyFriends(2, new int[][] {{1}, {0}}, new int[][] {{1, 0}}),
-    //   equalTo(0));
-    #[test]
-    fn test_unhappy_friends2() {
-        // TODO: 翻译 Java 测试
+        for pair in &pairs {
+            if Self::is_unhappy(pair[1], pair[0], &preferences, &assigned_pair) {
+                unhappy_friends += 1;
+            }
+            if Self::is_unhappy(pair[0], pair[1], &preferences, &assigned_pair) {
+                unhappy_friends += 1;
+            }
+        }
+        unhappy_friends
     }
 
-    // Java: void unhappyFriends3()
-    //   assertThat(
-    //   new Solution()
-    //   .unhappyFriends(
-    //   4,
-    //   new int[][] {{1, 3, 2}, {2, 3, 0}, {1, 3, 0}, {0, 2, 1}},
-    //   ... (2 more lines)
-    #[test]
-    fn test_unhappy_friends3() {
-        // TODO: 翻译 Java 测试
+    fn is_unhappy(
+        myself: i32,
+        assigned_friend: i32,
+        preferences: &[Vec<i32>],
+        assigned_pairs: &HashMap<i32, i32>,
+    ) -> bool {
+        let preference = &preferences[myself as usize];
+        let assigned_friend_preference_index = Self::find_index(preference, assigned_friend);
+
+        for i in 0..=assigned_friend_preference_index {
+            let preferred_friend = preference[i];
+            let preferred_friend_assigned_friend = *assigned_pairs.get(&preferred_friend).unwrap();
+
+            if preferred_friend_assigned_friend == myself {
+                return false;
+            }
+
+            let candidate_assigned_friend_index = Self::find_index(
+                &preferences[preferred_friend as usize],
+                preferred_friend_assigned_friend,
+            );
+
+            if Self::is_preferred(
+                myself,
+                &preferences[preferred_friend as usize],
+                candidate_assigned_friend_index,
+            ) {
+                return true;
+            }
+        }
+        false
+    }
+
+    fn is_preferred(myself: i32, preference: &[i32], boundary: usize) -> bool {
+        for i in 0..=boundary {
+            if myself == preference[i] {
+                return true;
+            }
+        }
+        false
+    }
+
+    fn find_index(preference: &[i32], assigned_friend: i32) -> usize {
+        for (i, &val) in preference.iter().enumerate() {
+            if val == assigned_friend {
+                return i;
+            }
+        }
+        0
     }
 }

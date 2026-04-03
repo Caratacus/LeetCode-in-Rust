@@ -1,35 +1,44 @@
-// Problem 1573: number of ways to split a string
+// Problem 1573: Number of Ways to Split a String
+// #Medium #String #Math
+// #Big_O_Time_O(n)_Space_O(1)
 
 pub struct Solution;
 
 impl Solution {
     pub fn num_ways(s: String) -> i32 {
-        todo!()
-    }
-}
+        let mod_val: i64 = 1_000_000_007;
+        let n = s.len() as i64;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+        let total_ones_count = s.chars().filter(|&c| c == '1').count() as i64;
 
-    // Java: void numWays()
-    //   assertThat(new Solution().numWays("10101"), equalTo(4));
-    #[test]
-    fn test_num_ways() {
-        // TODO: 翻译 Java 测试
-    }
+        if total_ones_count % 3 != 0 {
+            return 0;
+        }
 
-    // Java: void numWays2()
-    //   assertThat(new Solution().numWays("1001"), equalTo(0));
-    #[test]
-    fn test_num_ways2() {
-        // TODO: 翻译 Java 测试
-    }
+        let ones_first_part = total_ones_count / 3;
+        let ones_second_part = ones_first_part * 2;
 
-    // Java: void numWays3()
-    //   assertThat(new Solution().numWays("0000"), equalTo(3));
-    #[test]
-    fn test_num_ways3() {
-        // TODO: 翻译 Java 测试
+        if total_ones_count == 0 {
+            return (((n - 1) * (n - 2) / 2) % mod_val) as i32;
+        }
+
+        let mut ways_of_first_string = 0i64;
+        let mut ways_of_second_string = 0i64;
+        let mut ones_count = 0i64;
+
+        for c in s.chars() {
+            if c == '1' {
+                ones_count += 1;
+            }
+            if ones_count == ones_first_part {
+                ways_of_first_string += 1;
+            } else if ones_count == ones_second_part {
+                ways_of_second_string += 1;
+            } else if ones_count > ones_second_part {
+                break;
+            }
+        }
+
+        ((ways_of_first_string * ways_of_second_string) % mod_val) as i32
     }
 }

@@ -1,39 +1,41 @@
-// Problem 1566: detect pattern of length m repeated k or more times
+// Problem 1566: Detect Pattern of Length M Repeated K or More Times
+// #Easy #Array #Enumeration
+// #Big_O_Time_O(n*m)_Space_O(1)
 
 pub struct Solution;
 
 impl Solution {
     pub fn contains_pattern(arr: Vec<i32>, m: i32, k: i32) -> bool {
-        todo!()
-    }
-}
+        let m = m as usize;
+        let k = k as usize;
+        let n = arr.len();
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+        if n < m * k {
+            return false;
+        }
 
-    // Java: void containsPattern()
-    //   assertThat(
-    //   new Solution().containsPattern(new int[] {1, 2, 4, 4, 4, 4}, 1, 3), equalTo(true));
-    #[test]
-    fn test_contains_pattern() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void containsPattern2()
-    //   assertThat(
-    //   new Solution().containsPattern(new int[] {1, 2, 1, 2, 1, 1, 1, 3}, 2, 2),
-    //   equalTo(true));
-    #[test]
-    fn test_contains_pattern2() {
-        // TODO: 翻译 Java 测试
+        for i in 0..=(n - m) {
+            let times = Self::count_pattern_repeats(&arr, i, m);
+            if times >= k {
+                return true;
+            }
+        }
+        false
     }
 
-    // Java: void containsPattern3()
-    //   assertThat(
-    //   new Solution().containsPattern(new int[] {1, 2, 1, 2, 1, 3}, 2, 3), equalTo(false));
-    #[test]
-    fn test_contains_pattern3() {
-        // TODO: 翻译 Java 测试
+    fn count_pattern_repeats(arr: &[i32], start: usize, m: usize) -> usize {
+        let n = arr.len();
+        let mut times = 1;
+
+        let mut j = start + m;
+        while j + m <= n {
+            if arr[start..start + m] == arr[j..j + m] {
+                times += 1;
+                j += m;
+            } else {
+                break;
+            }
+        }
+        times
     }
 }

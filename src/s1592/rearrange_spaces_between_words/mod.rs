@@ -1,32 +1,39 @@
-// Problem 1592: rearrange spaces between words
+// Problem 1592: Rearrange Spaces Between Words
+// #Easy #String
+// #Big_O_Time_O(n)_Space_O(n)
 
 pub struct Solution;
 
 impl Solution {
     pub fn reorder_spaces(text: String) -> String {
-        todo!()
-    }
-}
+        let space_count = text.chars().filter(|&c| c == ' ').count();
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+        let words: Vec<&str> = text.split_whitespace().collect();
 
-    // Java: void reorderSpaces()
-    //   assertThat(
-    //   new Solution().reorderSpaces("  this   is  a sentence "),
-    //   equalTo("this   is   a   sentence"));
-    #[test]
-    fn test_reorder_spaces() {
-        // TODO: 翻译 Java 测试
-    }
+        if words.len() == 1 {
+            let mut result = words[0].to_string();
+            for _ in 0..space_count {
+                result.push(' ');
+            }
+            return result;
+        }
 
-    // Java: void reorderSpaces2()
-    //   assertThat(
-    //   new Solution().reorderSpaces(" practice   makes   perfect"),
-    //   equalTo("practice   makes   perfect "));
-    #[test]
-    fn test_reorder_spaces2() {
-        // TODO: 翻译 Java 测试
+        let trailing_spaces = space_count % (words.len() - 1);
+        let new_spaces = space_count / (words.len() - 1);
+
+        let mut result = String::new();
+        for (j, word) in words.iter().enumerate() {
+            result.push_str(word);
+            if j < words.len() - 1 {
+                for _ in 0..new_spaces {
+                    result.push(' ');
+                }
+            } else {
+                for _ in 0..trailing_spaces {
+                    result.push(' ');
+                }
+            }
+        }
+        result
     }
 }

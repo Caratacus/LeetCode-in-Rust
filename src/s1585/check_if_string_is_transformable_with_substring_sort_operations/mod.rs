@@ -1,35 +1,43 @@
-// Problem 1585: check if string is transformable with substring sort operations
+// Problem 1585: Check If String Is Transformable With Substring Sort Operations
+// #Hard #String #Sorting #Greedy
+// #Big_O_Time_O(n)_Space_O(n)
+
+use std::collections::VecDeque;
 
 pub struct Solution;
 
 impl Solution {
     pub fn is_transformable(s: String, t: String) -> bool {
-        todo!()
-    }
-}
+        let n = s.len();
+        if n != t.len() {
+            return false;
+        }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+        // Store positions of each digit in s
+        let mut pos: Vec<VecDeque<usize>> = vec![VecDeque::new(); 10];
+        let s_bytes = s.as_bytes();
+        for i in 0..n {
+            pos[(s_bytes[i] - b'0') as usize].push_back(i);
+        }
 
-    // Java: void isTransformable()
-    //   assertThat(new Solution().isTransformable("84532", "34852"), equalTo(true));
-    #[test]
-    fn test_is_transformable() {
-        // TODO: 翻译 Java 测试
-    }
+        let t_bytes = t.as_bytes();
+        for i in 0..n {
+            let digit = (t_bytes[i] - b'0') as usize;
 
-    // Java: void isTransformable2()
-    //   assertThat(new Solution().isTransformable("34521", "23415"), equalTo(true));
-    #[test]
-    fn test_is_transformable2() {
-        // TODO: 翻译 Java 测试
-    }
+            if pos[digit].is_empty() {
+                return false;
+            }
 
-    // Java: void isTransformable3()
-    //   assertThat(new Solution().isTransformable("12345", "12435"), equalTo(false));
-    #[test]
-    fn test_is_transformable3() {
-        // TODO: 翻译 Java 测试
+            // For each digit in t, we need to ensure we can bring it to position i
+            // by swapping with smaller digits only
+            for d in 0..digit {
+                if !pos[d].is_empty() && *pos[d].front().unwrap() < *pos[digit].front().unwrap() {
+                    return false;
+                }
+            }
+
+            pos[digit].pop_front();
+        }
+        true
     }
 }

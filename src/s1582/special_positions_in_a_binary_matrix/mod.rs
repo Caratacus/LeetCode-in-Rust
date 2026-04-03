@@ -1,32 +1,31 @@
-// Problem 1582: special positions in a binary matrix
+// Problem 1582: Special Positions in a Binary Matrix
+// #Easy #Array #Matrix
+// #Big_O_Time_O(m*n)_Space_O(m+n)
 
 pub struct Solution;
 
 impl Solution {
     pub fn num_special(mat: Vec<Vec<i32>>) -> i32 {
-        todo!()
-    }
-}
+        let m = mat.len();
+        let n = mat[0].len();
+        let mut row_sum = vec![0i32; m];
+        let mut col_sum = vec![0i32; n];
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+        for i in 0..m {
+            for j in 0..n {
+                row_sum[i] += mat[i][j];
+                col_sum[j] += mat[i][j];
+            }
+        }
 
-    // Java: void numSpecial()
-    //   assertThat(
-    //   new Solution().numSpecial(new int[][] {{1, 0, 0}, {0, 0, 1}, {1, 0, 0}}),
-    //   equalTo(1));
-    #[test]
-    fn test_num_special() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void numSpecial2()
-    //   assertThat(
-    //   new Solution().numSpecial(new int[][] {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}),
-    //   equalTo(3));
-    #[test]
-    fn test_num_special2() {
-        // TODO: 翻译 Java 测试
+        let mut count = 0;
+        for i in 0..m {
+            for j in 0..n {
+                if mat[i][j] == 1 && row_sum[i] == 1 && col_sum[j] == 1 {
+                    count += 1;
+                }
+            }
+        }
+        count
     }
 }

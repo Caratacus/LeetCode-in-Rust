@@ -1,35 +1,42 @@
-// Problem 1590: make sum divisible by p
+// Problem 1590: Make Sum Divisible by P
+// #Medium #Array #Hash_Table #Prefix_Sum
+// #Big_O_Time_O(n)_Space_O(n)
+
+use std::collections::HashMap;
 
 pub struct Solution;
 
 impl Solution {
     pub fn min_subarray(nums: Vec<i32>, p: i32) -> i32 {
-        todo!()
-    }
-}
+        let mut hmp: HashMap<i32, i32> = HashMap::new();
+        let n = nums.len();
+        let mut target = 0i32;
+        let mut sum = 0i32;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+        for &num in &nums {
+            target = (num + target) % p;
+        }
 
-    // Java: void minSubarray()
-    //   assertThat(new Solution().minSubarray(new int[] {3, 1, 4, 2}, 6), equalTo(1));
-    #[test]
-    fn test_min_subarray() {
-        // TODO: 翻译 Java 测试
-    }
+        if target == 0 {
+            return 0;
+        }
 
-    // Java: void minSubarray2()
-    //   assertThat(new Solution().minSubarray(new int[] {6, 3, 5, 2}, 9), equalTo(2));
-    #[test]
-    fn test_min_subarray2() {
-        // TODO: 翻译 Java 测试
-    }
+        hmp.insert(0, -1);
+        let mut ans = n as i32;
 
-    // Java: void minSubarray3()
-    //   assertThat(new Solution().minSubarray(new int[] {1, 2, 3}, 3), equalTo(0));
-    #[test]
-    fn test_min_subarray3() {
-        // TODO: 翻译 Java 测试
+        for i in 0..n {
+            sum = (sum + nums[i]) % p;
+            let key = (sum - target + p) % p;
+            if let Some(&val) = hmp.get(&key) {
+                ans = ans.min(i as i32 - val);
+            }
+            hmp.insert(sum % p, i as i32);
+        }
+
+        if ans < n as i32 {
+            ans
+        } else {
+            -1
+        }
     }
 }

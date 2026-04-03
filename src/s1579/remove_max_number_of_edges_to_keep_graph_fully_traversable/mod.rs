@@ -1,55 +1,85 @@
-// Problem 1579: remove max number of edges to keep graph fully traversable
+// Problem 1579: Remove Max Number of Edges to Keep Graph Fully Traversable
+// #Hard #Graph #Union_Find
+// #Big_O_Time_O(m*log(m))_Space_O(n)
 
 pub struct Solution;
 
 impl Solution {
-    pub fn max_num_edges_to_remove(n: i32, edges: Vec<Vec<i32>>) -> i32 {
-        todo!()
+    pub fn max_num_edges_to_remove(n: i32, mut edges: Vec<Vec<i32>>) -> i32 {
+        // Sort edges by type in descending order (type 3 first)
+        edges.sort_by(|a, b| b[0].cmp(&a[0]));
+
+        let n = n as usize;
+        let mut alice: Vec<usize> = (0..=n).collect();
+        let mut rank_alice = vec![0usize; n + 1];
+        let mut bob: Vec<usize> = (0..=n).collect();
+        let mut rank_bob = vec![0usize; n + 1];
+
+        let mut count_alice = n;
+        let mut count_bob = n;
+        let mut remove = 0;
+
+        for edge in &edges {
+            let typ = edge[0] as usize;
+            let u = edge[1] as usize;
+            let v = edge[2] as usize;
+
+            if typ == 1 {
+                if Self::union(u, v, &mut alice, &mut rank_alice) {
+                    count_alice -= 1;
+                } else {
+                    remove += 1;
+                }
+            } else if typ == 2 {
+                if Self::union(u, v, &mut bob, &mut rank_bob) {
+                    count_bob -= 1;
+                } else {
+                    remove += 1;
+                }
+            } else {
+                let b = Self::union(u, v, &mut bob, &mut rank_bob);
+                let a = Self::union(u, v, &mut alice, &mut rank_alice);
+                if !a && !b {
+                    remove += 1;
+                }
+                if a {
+                    count_alice -= 1;
+                }
+                if b {
+                    count_bob -= 1;
+                }
+            }
+        }
+
+        if count_alice != 1 || count_bob != 1 {
+            -1
+        } else {
+            remove as i32
+        }
     }
 
-    pub fn union(x: i32, y: i32, arr: Vec<i32>, rank: Vec<i32>) -> bool {
-        todo!()
+    fn union(x: usize, y: usize, arr: &mut [usize], rank: &mut [usize]) -> bool {
+        let p1 = Self::find(x, arr);
+        let p2 = Self::find(y, arr);
+        if p1 != p2 {
+            if rank[p1] > rank[p2] {
+                arr[p2] = p1;
+            } else if rank[p1] < rank[p2] {
+                arr[p1] = p2;
+            } else {
+                arr[p1] = p2;
+                rank[p2] += 1;
+            }
+            return true;
+        }
+        false
     }
 
-    pub fn find(x: i32, arr: Vec<i32>) -> i32 {
-        todo!()
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    // Java: void maxNumEdgesToRemove()
-    //   assertThat(
-    //   new Solution()
-    //   .maxNumEdgesToRemove(
-    //   4,
-    //   new int[][] {
-    //   ... (3 more lines)
-    #[test]
-    fn test_max_num_edges_to_remove() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void maxNumEdgesToRemove2()
-    //   assertThat(
-    //   new Solution()
-    //   .maxNumEdgesToRemove(
-    //   4, new int[][] {{3, 1, 2}, {3, 2, 3}, {1, 1, 4}, {2, 1, 4}}),
-    //   equalTo(0));
-    #[test]
-    fn test_max_num_edges_to_remove2() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void maxNumEdgesToRemove3()
-    //   assertThat(
-    //   new Solution()
-    //   .maxNumEdgesToRemove(4, new int[][] {{3, 2, 3}, {1, 1, 2}, {2, 3, 4}}),
-    //   equalTo(-1));
-    #[test]
-    fn test_max_num_edges_to_remove3() {
-        // TODO: 翻译 Java 测试
+    fn find(x: usize, arr: &mut [usize]) -> usize {
+        if arr[x] == x {
+            return x;
+        }
+        arr[x] = Self::find(arr[x], arr);
+        arr[x]
     }
 }
