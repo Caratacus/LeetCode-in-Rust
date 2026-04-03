@@ -6,7 +6,15 @@ use std::rc::Rc;
 
 pub struct Solution;
 
-impl Solution {}
+impl Solution {
+    pub fn get_target_copy(
+        original: Option<Rc<RefCell<TreeNode>>>,
+        cloned: Option<Rc<RefCell<TreeNode>>>,
+        target: Option<Rc<RefCell<TreeNode>>>,
+    ) -> Option<Rc<RefCell<TreeNode>>> {
+        todo!()
+    }
+}
 
 #[cfg(test)]
 mod tests {
