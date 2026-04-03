@@ -8,8 +8,8 @@ fn test_num_buses_to_destination() {
     assert_eq!(
         Solution::num_buses_to_destination(
             vec![vec![1, 2, 7], vec![3, 6, 7]],
-            ,
-            15
+            1,
+            6
         ),
         2
     );
@@ -25,13 +25,10 @@ fn test_num_buses_to_destination2() {
                 vec![6],
                 vec![15, 19],
                 vec![9, 12, 13],
-                vec![15, 20],
             ],
-            ,
-            12,
-            13
+            15,
+            12
         ),
-        1
-    ),
+        -1
+    );
 }
-

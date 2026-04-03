@@ -5,5 +5,6 @@ use leetcode_in_rust::s0813::largest_sum_of_averages::Solution;
 
 #[test]
 fn test_largest_sum_of_averages() {
-    assert_eq!(Solution::largest_sum_of_averages(vec![9, 1, 2, 3, 4, 5, 6, 7], 2), .0);
+    let result = Solution::largest_sum_of_averages(vec![9, 1, 2, 3, 4, 5, 6, 7], 2);
+    assert!((result - 10.0).abs() < 0.00001);
 }
