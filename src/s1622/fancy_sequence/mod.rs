@@ -5,6 +5,10 @@ pub struct Fancy {
 }
 
 impl Fancy {
+    pub fn new() -> Self {
+        todo!()
+    }
+
     pub fn append(&mut self, val: i32) -> () {
         todo!()
     }
