@@ -1,10 +1,12 @@
 // Problem 0855: exam room
 
-pub struct ExamRoom {}
+pub struct ExamRoom {
+    n: i32,
+}
 
 impl ExamRoom {
-    pub fn new() -> Self {
-        todo!()
+    pub fn new(n: i32) -> Self {
+        Self { n }
     }
 
     pub fn seat(&mut self) -> i32 {
