@@ -22,15 +22,3 @@ impl WordFilter {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    // Java: void wordFilterTest()
-    //   WordFilter wordFilter = new WordFilter(new String[] {"apple"});
-    //   assertThat(wordFilter.f("a", "e"), equalTo(0));
-    #[test]
-    fn test_word_filter_test() {
-        // TODO: 翻译 Java 测试
-    }
-}

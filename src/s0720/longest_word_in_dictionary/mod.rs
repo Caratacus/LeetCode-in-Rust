@@ -16,28 +16,3 @@ impl Solution {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    // Java: void longestWord()
-    //   assertThat(
-    //   new Solution().longestWord(new String[] {"w", "wo", "wor", "worl", "world"}),
-    //   equalTo("world"));
-    #[test]
-    fn test_longest_word() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void longestWord2()
-    //   assertThat(
-    //   new Solution()
-    //   .longestWord(
-    //   new String[] {
-    //   "a", "banana", "app", "appl", "ap", "apply", "apple"
-    //   ... (2 more lines)
-    #[test]
-    fn test_longest_word2() {
-        // TODO: 翻译 Java 测试
-    }
-}

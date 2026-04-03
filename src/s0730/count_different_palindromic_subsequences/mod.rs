@@ -8,25 +8,3 @@ impl Solution {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    // Java: void countPalindromicSubsequences()
-    //   assertThat(new Solution().countPalindromicSubsequences("bccb"), equalTo(6));
-    #[test]
-    fn test_count_palindromic_subsequences() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void countPalindromicSubsequences2()
-    //   assertThat(
-    //   new Solution()
-    //   .countPalindromicSubsequences(
-    //   "abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba"),
-    //   equalTo(104860361));
-    #[test]
-    fn test_count_palindromic_subsequences2() {
-        // TODO: 翻译 Java 测试
-    }
-}

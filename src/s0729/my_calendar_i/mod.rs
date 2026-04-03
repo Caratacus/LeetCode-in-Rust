@@ -18,17 +18,3 @@ impl MyCalendar {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    // Java: void myCalendarTest()
-    //   MyCalendar myCalendar = new MyCalendar();
-    //   assertThat(myCalendar.book(10, 20), equalTo(true));
-    //   assertThat(myCalendar.book(15, 25), equalTo(false));
-    //   assertThat(myCalendar.book(20, 30), equalTo(true));
-    #[test]
-    fn test_my_calendar_test() {
-        // TODO: 翻译 Java 测试
-    }
-}
