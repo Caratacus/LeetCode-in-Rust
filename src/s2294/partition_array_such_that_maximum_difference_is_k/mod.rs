@@ -4,7 +4,19 @@ pub struct Solution;
 
 impl Solution {
     pub fn partition_array(nums: Vec<i32>, k: i32) -> i32 {
-        todo!()
+        let mut nums = nums;
+        nums.sort();
+        let mut count = 0;
+        let mut i = 0;
+        let n = nums.len();
+        while i < n {
+            count += 1;
+            let min_val = nums[i];
+            while i < n && nums[i] - min_val <= k {
+                i += 1;
+            }
+        }
+        count
     }
 }
 

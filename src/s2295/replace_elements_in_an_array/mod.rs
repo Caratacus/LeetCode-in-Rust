@@ -2,9 +2,24 @@
 
 pub struct Solution;
 
+use std::collections::HashMap;
+
 impl Solution {
     pub fn array_change(nums: Vec<i32>, operations: Vec<Vec<i32>>) -> Vec<i32> {
-        todo!()
+        let mut index_map: HashMap<i32, usize> = nums
+            .iter()
+            .enumerate()
+            .map(|(i, &v)| (v, i))
+            .collect();
+        let mut result = nums;
+        for op in operations {
+            if let Some(&idx) = index_map.get(&op[0]) {
+                result[idx] = op[1];
+                index_map.remove(&op[0]);
+                index_map.insert(op[1], idx);
+            }
+        }
+        result
     }
 }
 

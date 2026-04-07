@@ -4,7 +4,19 @@ pub struct Solution;
 
 impl Solution {
     pub fn successful_pairs(spells: Vec<i32>, potions: Vec<i32>, success: i64) -> Vec<i32> {
-        todo!()
+        let mut potions = potions;
+        potions.sort();
+        let m = potions.len();
+
+        spells
+            .iter()
+            .map(|&spell| {
+                let min_potion = (success + spell as i64 - 1) / spell as i64;
+                // Find first position where element >= min_potion
+                let idx = potions.partition_point(|x| (*x as i64) < min_potion);
+                (m - idx) as i32
+            })
+            .collect()
     }
 }
 
@@ -18,7 +30,13 @@ mod tests {
     //   equalTo(new int[] {4, 0, 3}));
     #[test]
     fn test_successful_pairs() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(
+            Solution::successful_pairs(vec
+![5, 1, 3], vec
+![1, 2, 3, 4, 5], 7),
+            vec
+![4, 0, 3]
+        );
     }
 
     // Java: void successfulPairs2()
@@ -27,6 +45,12 @@ mod tests {
     //   equalTo(new int[] {2, 0, 2}));
     #[test]
     fn test_successful_pairs2() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(
+            Solution::successful_pairs(vec
+![3, 1, 2], vec
+![8, 5, 8], 16),
+            vec
+![2, 0, 2]
+        );
     }
 }

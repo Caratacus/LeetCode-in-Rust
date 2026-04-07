@@ -4,7 +4,24 @@ pub struct Solution;
 
 impl Solution {
     pub fn discount_prices(sentence: String, discount: i32) -> String {
-        todo!()
+        let words: Vec<&str> = sentence.split(' ').collect();
+        let discount_factor = (100 - discount) as f64 / 100.0;
+        let result: Vec<String> = words
+            .iter()
+            .map(|word| {
+                if word.starts_with('$') && word.len() > 1 {
+                    if let Ok(price) = word[1..].parse::<u64>() {
+                        let discounted = price as f64 * discount_factor;
+                        let cents = (discounted * 100.0).round() as u64;
+                        let dollars = cents / 100;
+                        let remaining_cents = cents % 100;
+                        return format!("${}.{:02}", dollars, remaining_cents);
+                    }
+                }
+                word.to_string()
+            })
+            .collect();
+        result.join(" ")
     }
 }
 
