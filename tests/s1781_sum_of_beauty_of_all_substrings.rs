@@ -5,10 +5,10 @@ use leetcode_in_rust::s1781::sum_of_beauty_of_all_substrings::Solution;
 
 #[test]
 fn test_beauty_sum() {
-    assert_eq!(Solution::beauty_sum("aabcb"), 5);
+    assert_eq!(Solution::beauty_sum("aabcb".to_string()), 5);
 }
 
 #[test]
 fn test_beauty_sum2() {
-    assert_eq!(Solution::beauty_sum("aabcbaa"), 17);
+    assert_eq!(Solution::beauty_sum("aabcbaa".to_string()), 17);
 }

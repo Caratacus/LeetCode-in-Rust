@@ -12,8 +12,8 @@ fn test_count_matches() {
                 vec!["computer".to_string(), "silver".to_string(), "lenovo".to_string()],
                 vec!["phone".to_string(), "gold".to_string(), "iphone".to_string()],
             ],
-            "color",
-            "silver"
+            "color".to_string(),
+            "silver".to_string()
         ),
         1
     );
@@ -28,8 +28,8 @@ fn test_count_matches2() {
                 vec!["computer".to_string(), "silver".to_string(), "phone".to_string()],
                 vec!["phone".to_string(), "gold".to_string(), "iphone".to_string()],
             ],
-            "type",
-            "phone"
+            "type".to_string(),
+            "phone".to_string()
         ),
         2
     );

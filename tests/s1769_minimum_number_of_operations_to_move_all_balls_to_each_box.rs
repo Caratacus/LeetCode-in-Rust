@@ -5,10 +5,10 @@ use leetcode_in_rust::s1769::minimum_number_of_operations_to_move_all_balls_to_e
 
 #[test]
 fn test_min_operations() {
-    assert_eq!(Solution::min_operations("110"), vec![1, 1, 3]);
+    assert_eq!(Solution::min_operations("110".to_string()), vec![1, 1, 3]);
 }
 
 #[test]
 fn test_min_operations2() {
-    assert_eq!(Solution::min_operations("001011"), vec![11, 8, 5, 4, 3, 4]);
+    assert_eq!(Solution::min_operations("001011".to_string()), vec![11, 8, 5, 4, 3, 4]);
 }
