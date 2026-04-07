@@ -5,15 +5,18 @@ use leetcode_in_rust::s1763::longest_nice_substring::Solution;
 
 #[test]
 fn test_longest_nice_substring() {
-    assert_eq!(Solution::longest_nice_substring("YazaAay"), "aAa");
+    assert_eq!(
+        Solution::longest_nice_substring("YazaAay".to_string()),
+        "aAa"
+    );
 }
 
 #[test]
 fn test_longest_nice_substring2() {
-    assert_eq!(Solution::longest_nice_substring("Bb"), "Bb");
+    assert_eq!(Solution::longest_nice_substring("Bb".to_string()), "Bb");
 }
 
 #[test]
 fn test_longest_nice_substring3() {
-    assert_eq!(Solution::longest_nice_substring("c"), "");
+    assert_eq!(Solution::longest_nice_substring("c".to_string()), "");
 }

@@ -5,15 +5,18 @@ use leetcode_in_rust::s1759::count_number_of_homogenous_substrings::Solution;
 
 #[test]
 fn test_count_homogenous() {
-    assert_eq!(Solution::count_homogenous("abbcccaa"), 13);
+    assert_eq!(
+        Solution::count_homogenous("abbcccaa".to_string()),
+        13
+    );
 }
 
 #[test]
 fn test_count_homogenous2() {
-    assert_eq!(Solution::count_homogenous("xy"), 2);
+    assert_eq!(Solution::count_homogenous("xy".to_string()), 2);
 }
 
 #[test]
 fn test_count_homogenous3() {
-    assert_eq!(Solution::count_homogenous("zzzzz"), 15);
+    assert_eq!(Solution::count_homogenous("zzzzz".to_string()), 15);
 }

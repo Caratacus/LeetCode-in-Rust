@@ -5,15 +5,24 @@ use leetcode_in_rust::s1768::merge_strings_alternately::Solution;
 
 #[test]
 fn test_merge_alternately() {
-    assert_eq!(Solution::merge_alternately("abc", "pqr"), "apbqcr");
+    assert_eq!(
+        Solution::merge_alternately("abc".to_string(), "pqr".to_string()),
+        "apbqcr"
+    );
 }
 
 #[test]
 fn test_merge_alternately2() {
-    assert_eq!(Solution::merge_alternately("ab", "pqrs"), "apbqrs");
+    assert_eq!(
+        Solution::merge_alternately("ab".to_string(), "pqrs".to_string()),
+        "apbqrs"
+    );
 }
 
 #[test]
 fn test_merge_alternately3() {
-    assert_eq!(Solution::merge_alternately("abcd", "pq"), "apbqcd");
+    assert_eq!(
+        Solution::merge_alternately("abcd".to_string(), "pq".to_string()),
+        "apbqcd"
+    );
 }

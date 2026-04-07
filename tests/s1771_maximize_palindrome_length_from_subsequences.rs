@@ -5,15 +5,24 @@ use leetcode_in_rust::s1771::maximize_palindrome_length_from_subsequences::Solut
 
 #[test]
 fn test_longest_palindrome() {
-    assert_eq!(Solution::longest_palindrome("cacb", "cbba"), 5);
+    assert_eq!(
+        Solution::longest_palindrome("cacb".to_string(), "cbba".to_string()),
+        5
+    );
 }
 
 #[test]
 fn test_longest_palindrome2() {
-    assert_eq!(Solution::longest_palindrome("ab", "ab"), 3);
+    assert_eq!(
+        Solution::longest_palindrome("ab".to_string(), "ab".to_string()),
+        3
+    );
 }
 
 #[test]
 fn test_longest_palindrome3() {
-    assert_eq!(Solution::longest_palindrome("aa", "bb"), 0);
+    assert_eq!(
+        Solution::longest_palindrome("aa".to_string(), "bb".to_string()),
+        0
+    );
 }

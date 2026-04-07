@@ -2,7 +2,15 @@
 
 pub struct Solution;
 
-impl Solution {}
+impl Solution {
+    pub fn find_all_recipes(
+        recipes: Vec<String>,
+        ingredients: Vec<Vec<String>>,
+        supplies: Vec<String>,
+    ) -> Vec<String> {
+        todo!()
+    }
+}
 
 #[cfg(test)]
 mod tests {
