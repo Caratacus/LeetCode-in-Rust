@@ -4,7 +4,11 @@ pub struct Solution;
 
 impl Solution {
     pub fn percentage_letter(s: String, letter: char) -> i32 {
-        todo!()
+        if s.is_empty() {
+            return 0;
+        }
+        let count = s.chars().filter(|&c| c == letter).count();
+        (count * 100 / s.len()) as i32
     }
 }
 

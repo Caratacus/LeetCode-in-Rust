@@ -4,7 +4,24 @@ pub struct Solution;
 
 impl Solution {
     pub fn maximum_bags(capacity: Vec<i32>, rocks: Vec<i32>, additional_rocks: i32) -> i32 {
-        todo!()
+        let n = capacity.len();
+        let mut remaining: Vec<i64> = (0..n)
+            .map(|i| capacity[i] as i64 - rocks[i] as i64)
+            .collect();
+        remaining.sort();
+        let mut additional = additional_rocks as i64;
+        let mut count = 0;
+        for r in remaining {
+            if r == 0 {
+                count += 1;
+            } else if additional >= r {
+                additional -= r;
+                count += 1;
+            } else {
+                break;
+            }
+        }
+        count
     }
 }
 

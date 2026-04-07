@@ -4,7 +4,18 @@ pub struct Solution;
 
 impl Solution {
     pub fn maximum_importance(n: i32, roads: Vec<Vec<i32>>) -> i64 {
-        todo!()
+        let n = n as usize;
+        let mut degree = vec![0i64; n];
+        for road in &roads {
+            degree[road[0] as usize] += 1;
+            degree[road[1] as usize] += 1;
+        }
+        degree.sort();
+        degree
+            .iter()
+            .enumerate()
+            .map(|(i, &d)| d * ((i + 1) as i64))
+            .sum()
     }
 }
 

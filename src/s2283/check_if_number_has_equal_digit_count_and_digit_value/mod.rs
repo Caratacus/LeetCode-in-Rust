@@ -4,7 +4,16 @@ pub struct Solution;
 
 impl Solution {
     pub fn digit_count(num: String) -> bool {
-        todo!()
+        let digits: Vec<u32> = num.chars().map(|c| c.to_digit(10).unwrap()).collect();
+        let n = digits.len();
+        for i in 0..n {
+            let expected = digits[i] as usize;
+            let count = digits.iter().filter(|&&d| d as usize == i).count();
+            if expected != count {
+                return false;
+            }
+        }
+        true
     }
 }
 
