@@ -6,14 +6,14 @@ use leetcode_in_rust::utils::linked_list_utils::{linked_list_from_vec, linked_li
 
 #[test]
 fn test_double_it() {
-    let head = linked_list_from_vec(&[1, 8, 9]);
+    let head = linked_list_from_vec(vec![1, 8, 9]);
     let result = Solution::double_it(head);
     assert_eq!(linked_list_to_vec(result), vec![3, 7, 8]);
 }
 
 #[test]
 fn test_double_it2() {
-    let head = linked_list_from_vec(&[9, 9, 9]);
+    let head = linked_list_from_vec(vec![9, 9, 9]);
     let result = Solution::double_it(head);
     assert_eq!(linked_list_to_vec(result), vec![1, 9, 9, 8]);
 }
