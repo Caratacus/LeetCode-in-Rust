@@ -8,5 +8,5 @@ fn test_number_of_pairs() {
 }
 #[test]
 fn test_number_of_pairs2() {
-    assert_eq!(Solution::number_of_pairs(vec![1, 2, 4, 12], vec![2, 4, 3], 2);
+    assert_eq!(Solution::number_of_pairs(vec![1, 2, 4, 12], vec![2, 4], 3), 2);
 }

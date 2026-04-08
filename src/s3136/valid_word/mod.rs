@@ -1,10 +1,31 @@
 // Problem 3136: valid word
+// #Easy #String #2024_07_15_Time_1 ms(99.12%)  Space 42.10 MB (62.25%)
 
 pub struct Solution;
 
 impl Solution {
     pub fn is_valid(word: String) -> bool {
-        todo!()
+        if word.len() < 3 {
+            return false;
+        }
+
+        let mut has_vowel = false;
+        let mut has_consonant = false;
+
+        for c in word.chars() {
+            if c.is_ascii_alphabetic() {
+                let ch = c.to_ascii_lowercase();
+                if ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' {
+                    has_vowel = true;
+                } else {
+                    has_consonant = true;
+                }
+            } else if !c.is_ascii_digit() {
+                return false;
+            }
+        }
+
+        has_vowel && has_consonant
     }
 }
 
@@ -12,108 +33,86 @@ impl Solution {
 mod tests {
     use super::*;
 
-    // Java: void isValid()
-    //   assertThat(new Solution().isValid("234Adas"), equalTo(true));
     #[test]
     fn test_is_valid() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::is_valid(String::from("234Adas")), true);
     }
 
-    // Java: void isValid2()
-    //   assertThat(new Solution().isValid("b3"), equalTo(false));
     #[test]
     fn test_is_valid2() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::is_valid(String::from("b3")), false);
     }
 
-    // Java: void isValid3()
-    //   assertThat(new Solution().isValid("a3$e"), equalTo(false));
     #[test]
     fn test_is_valid3() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::is_valid(String::from("a3$e")), false);
     }
 
-    // Java: void isValid4()
-    //   assertThat(new Solution().isValid("a"), equalTo(false));
-    //   assertThat(new Solution().isValid("ab"), equalTo(false));
-    //   assertThat(new Solution().isValid("1"), equalTo(false));
-    //   assertThat(new Solution().isValid("1a"), equalTo(false));
-    //   assertThat(new Solution().isValid(""), equalTo(false));
     #[test]
     fn test_is_valid4() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::is_valid(String::from("a")), false);
+        assert_eq!(Solution::is_valid(String::from("ab")), false);
+        assert_eq!(Solution::is_valid(String::from("1")), false);
+        assert_eq!(Solution::is_valid(String::from("1a")), false);
+        assert_eq!(Solution::is_valid(String::from("")), false);
     }
 
-    // Java: void isValid5()
-    //   assertThat(new Solution().isValid("aei"), equalTo(false));
-    //   assertThat(new Solution().isValid("AEI"), equalTo(false));
-    //   assertThat(new Solution().isValid("Aei"), equalTo(false));
-    //   assertThat(new Solution().isValid("uuu"), equalTo(false));
     #[test]
     fn test_is_valid5() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::is_valid(String::from("aei")), false);
+        assert_eq!(Solution::is_valid(String::from("AEI")), false);
+        assert_eq!(Solution::is_valid(String::from("Aei")), false);
+        assert_eq!(Solution::is_valid(String::from("uuu")), false);
     }
 
-    // Java: void isValid6()
-    //   assertThat(new Solution().isValid("bcdfg"), equalTo(false));
-    //   assertThat(new Solution().isValid("BCD"), equalTo(false));
-    //   assertThat(new Solution().isValid("xyz"), equalTo(false));
-    //   assertThat(new Solution().isValid("QWRTY"), equalTo(false));
     #[test]
     fn test_is_valid6() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::is_valid(String::from("bcdfg")), false);
+        assert_eq!(Solution::is_valid(String::from("BCD")), false);
+        assert_eq!(Solution::is_valid(String::from("xyz")), false);
+        assert_eq!(Solution::is_valid(String::from("QWRTY")), false);
     }
 
-    // Java: void isValid7()
-    //   assertThat(new Solution().isValid("abc"), equalTo(true));
-    //   assertThat(new Solution().isValid("bac"), equalTo(true));
-    //   assertThat(new Solution().isValid("AeIbcD"), equalTo(true));
-    //   assertThat(new Solution().isValid("tree"), equalTo(true));
-    //   assertThat(new Solution().isValid("skyE"), equalTo(true));
     #[test]
     fn test_is_valid7() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::is_valid(String::from("abc")), true);
+        assert_eq!(Solution::is_valid(String::from("bac")), true);
+        assert_eq!(Solution::is_valid(String::from("AeIbcD")), true);
+        assert_eq!(Solution::is_valid(String::from("tree")), true);
+        assert_eq!(Solution::is_valid(String::from("skyE")), true);
     }
 
-    // Java: void isValid8()
-    //   assertThat(new Solution().isValid("a1b2c"), equalTo(true));
-    //   assertThat(new Solution().isValid("1a2b"), equalTo(true));
-    //   assertThat(new Solution().isValid("b2c4e"), equalTo(true));
-    //   assertThat(new Solution().isValid("123"), equalTo(false));
     #[test]
     fn test_is_valid8() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::is_valid(String::from("a1b2c")), true);
+        assert_eq!(Solution::is_valid(String::from("1a2b")), true);
+        assert_eq!(Solution::is_valid(String::from("b2c4e")), true);
+        assert_eq!(Solution::is_valid(String::from("123")), false);
     }
 
-    // Java: void isValid10()
-    //   assertThat(new Solution().isValid("a#b"), equalTo(false));
-    //   assertThat(new Solution().isValid("@ab"), equalTo(false));
-    //   assertThat(new Solution().isValid("ab!"), equalTo(false));
-    //   assertThat(new Solution().isValid("c_d"), equalTo(false));
-    //   assertThat(new Solution().isValid("a.b"), equalTo(false));
-    //   ... (1 more lines)
     #[test]
     fn test_is_valid10() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::is_valid(String::from("a#b")), false);
+        assert_eq!(Solution::is_valid(String::from("@ab")), false);
+        assert_eq!(Solution::is_valid(String::from("ab!")), false);
+        assert_eq!(Solution::is_valid(String::from("c_d")), false);
+        assert_eq!(Solution::is_valid(String::from("a.b")), false);
+        assert_eq!(Solution::is_valid(String::from("a@b")), false);
     }
 
-    // Java: void isValid11()
-    //   assertThat(new Solution().isValid("AbC"), equalTo(true));
-    //   assertThat(new Solution().isValid("BacE1"), equalTo(true));
-    //   assertThat(new Solution().isValid("zEi"), equalTo(true));
     #[test]
     fn test_is_valid11() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::is_valid(String::from("AbC")), true);
+        assert_eq!(Solution::is_valid(String::from("BacE1")), true);
+        assert_eq!(Solution::is_valid(String::from("zEi")), true);
     }
 
-    // Java: void isValid12()
-    //   assertThat(new Solution().isValid("a1b"), equalTo(true));
-    //   assertThat(new Solution().isValid("ab1"), equalTo(true));
-    //   assertThat(new Solution().isValid("1ab"), equalTo(true));
-    //   assertThat(new Solution().isValid("1a"), equalTo(false));
-    //   assertThat(new Solution().isValid("1b"), equalTo(false));
     #[test]
     fn test_is_valid12() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::is_valid(String::from("a1b")), true);
+        assert_eq!(Solution::is_valid(String::from("ab1")), true);
+        assert_eq!(Solution::is_valid(String::from("1ab")), true);
+        assert_eq!(Solution::is_valid(String::from("1a")), false);
+        assert_eq!(Solution::is_valid(String::from("1b")), false);
     }
 }

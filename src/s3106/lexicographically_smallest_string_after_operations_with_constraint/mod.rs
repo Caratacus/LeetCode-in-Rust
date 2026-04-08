@@ -1,10 +1,28 @@
 // Problem 3106: lexicographically smallest string after operations with constraint
+// #Medium #String #Greedy #2024_04_11_Time_1_ms_(100.00%)_Space_42.4_MB_(91.10%)
 
 pub struct Solution;
 
 impl Solution {
     pub fn get_smallest_string(s: String, k: i32) -> String {
-        todo!()
+        let mut s_array: Vec<char> = s.chars().collect();
+        let mut k = k;
+        for i in 0..s_array.len() {
+            let dist_to_a = Self::cyclic_distance(s_array[i], 'a');
+            if dist_to_a <= k {
+                s_array[i] = 'a';
+                k -= dist_to_a;
+            } else if k > 0 {
+                s_array[i] = ((s_array[i] as u8) - (k as u8)) as char;
+                k = 0;
+            }
+        }
+        s_array.into_iter().collect()
+    }
+
+    fn cyclic_distance(ch1: char, ch2: char) -> i32 {
+        let dist = (ch1 as i32 - ch2 as i32).abs();
+        dist.min(26 - dist)
     }
 }
 
@@ -12,24 +30,18 @@ impl Solution {
 mod tests {
     use super::*;
 
-    // Java: void getSmallestString()
-    //   assertThat(new Solution().getSmallestString("zbbz", 3), equalTo("aaaz"));
     #[test]
     fn test_get_smallest_string() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::get_smallest_string("zbbz".to_string(), 3), "aaaz");
     }
 
-    // Java: void getSmallestString2()
-    //   assertThat(new Solution().getSmallestString("xaxcd", 4), equalTo("aawcd"));
     #[test]
     fn test_get_smallest_string2() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::get_smallest_string("xaxcd".to_string(), 4), "aawcd");
     }
 
-    // Java: void getSmallestString3()
-    //   assertThat(new Solution().getSmallestString("lol", 0), equalTo("lol"));
     #[test]
     fn test_get_smallest_string3() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::get_smallest_string("lol".to_string(), 0), "lol");
     }
 }

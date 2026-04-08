@@ -8,5 +8,5 @@ fn test_find_permutation_difference() {
 }
 #[test]
 fn test_find_permutation_difference2() {
-    assert_eq!(Solution::find_permutation_difference(String::from("abcde"), String::from("edbac"), 12);
+    assert_eq!(Solution::find_permutation_difference(String::from("abcde"), String::from("edbac")), 12);
 }

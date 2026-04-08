@@ -2,6 +2,7 @@
 // Java reference: src/test/java/g3101_3200/s3165_maximum_sum_of_subsequence_with_non_adjacent_elements/SolutionTest.java
 
 use leetcode_in_rust::s3165::maximum_sum_of_subsequence_with_non_adjacent_elements::Solution;
+
 #[test]
 fn test_maximum_sum_subsequence() {
     assert_eq!(
@@ -9,6 +10,7 @@ fn test_maximum_sum_subsequence() {
         21
     );
 }
+
 #[test]
 fn test_maximum_sum_subsequence2() {
     assert_eq!(Solution::maximum_sum_subsequence(vec![0, -1], vec![vec![0, -5]]), 0);

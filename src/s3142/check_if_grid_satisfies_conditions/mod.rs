@@ -1,10 +1,31 @@
 // Problem 3142: check if grid satisfies conditions
+// #Easy #Array #Matrix #2024_05_15_Time_1_ms_(95.76%)_Space_44.4_MB_(59.70%)
 
 pub struct Solution;
 
 impl Solution {
     pub fn satisfies_conditions(grid: Vec<Vec<i32>>) -> bool {
-        todo!()
+        let m = grid.len();
+        let n = grid[0].len();
+        for i in 0..m - 1 {
+            if n > 1 {
+                for j in 0..n - 1 {
+                    if grid[i][j] != grid[i + 1][j] || grid[i][j] == grid[i][j + 1] {
+                        return false;
+                    }
+                }
+            } else {
+                if grid[i][0] != grid[i + 1][0] {
+                    return false;
+                }
+            }
+        }
+        for j in 0..n - 1 {
+            if grid[m - 1][j] == grid[m - 1][j + 1] {
+                return false;
+            }
+        }
+        true
     }
 }
 
@@ -12,114 +33,83 @@ impl Solution {
 mod tests {
     use super::*;
 
-    // Java: void satisfiesConditions()
-    //   assertThat(
-    //   new Solution().satisfiesConditions(new int[][] {{1, 0, 2}, {1, 0, 2}}),
-    //   equalTo(true));
     #[test]
     fn test_satisfies_conditions() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::satisfies_conditions(vec![vec![1, 0, 2], vec![1, 0, 2]]), true);
     }
 
-    // Java: void satisfiesConditions2()
-    //   assertThat(
-    //   new Solution().satisfiesConditions(new int[][] {{1, 1, 1}, {0, 0, 0}}),
-    //   equalTo(false));
     #[test]
     fn test_satisfies_conditions2() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::satisfies_conditions(vec![vec![1, 1, 1], vec![0, 0, 0]]), false);
     }
 
-    // Java: void satisfiesConditions3()
-    //   assertThat(new Solution().satisfiesConditions(new int[][] {{1}, {2}, {3}}), equalTo(false));
     #[test]
     fn test_satisfies_conditions3() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::satisfies_conditions(vec![vec![1], vec![2], vec![3]]), false);
     }
 
-    // Java: void satisfiesConditions4()
-    //   assertThat(new Solution().satisfiesConditions(new int[][] {{1}, {1}}), equalTo(true));
     #[test]
     fn test_satisfies_conditions4() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::satisfies_conditions(vec![vec![1], vec![1]]), true);
     }
 
-    // Java: void satisfiesConditions5()
-    //   assertThat(new Solution().satisfiesConditions(new int[][] {{1, 2, 3}}), equalTo(true));
     #[test]
     fn test_satisfies_conditions5() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::satisfies_conditions(vec![vec![1, 2, 3]]), true);
     }
 
-    // Java: void satisfiesConditions6()
-    //   assertThat(new Solution().satisfiesConditions(new int[][] {{1, 1}}), equalTo(false));
     #[test]
     fn test_satisfies_conditions6() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::satisfies_conditions(vec![vec![1, 1]]), false);
     }
 
-    // Java: void satisfiesConditions7()
-    //   assertThat(
-    //   new Solution().satisfiesConditions(new int[][] {{1, 2, 2}, {3, 4, 5}}),
-    //   equalTo(false));
     #[test]
     fn test_satisfies_conditions7() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(
+            Solution::satisfies_conditions(vec![vec![1, 2, 2], vec![3, 4, 5]]),
+            false
+        );
     }
 
-    // Java: void satisfiesConditions8()
-    //   int[][] grid = {
-    //   {1, 0, 1},
-    //   {0, 1, 0},
-    //   {1, 0, 1}
-    //   };
-    //   ... (1 more lines)
     #[test]
     fn test_satisfies_conditions8() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(
+            Solution::satisfies_conditions(vec![vec![1, 0, 1], vec![0, 1, 0], vec![1, 0, 1]]),
+            true
+        );
     }
 
-    // Java: void satisfiesConditions9()
-    //   assertThat(new Solution().satisfiesConditions(new int[][] {{5, 1}, {5, 0}}), equalTo(true));
     #[test]
     fn test_satisfies_conditions9() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::satisfies_conditions(vec![vec![5, 1], vec![5, 0]]), true);
     }
 
-    // Java: void satisfiesConditions10()
-    //   assertThat(
-    //   new Solution().satisfiesConditions(new int[][] {{1, 0}, {2, 2}}), equalTo(false));
     #[test]
     fn test_satisfies_conditions10() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(
+            Solution::satisfies_conditions(vec![vec![1, 0], vec![2, 2]]),
+            false
+        );
     }
 
-    // Java: void satisfiesConditions11()
-    //   assertThat(new Solution().satisfiesConditions(new int[][] {{7}}), equalTo(true));
     #[test]
     fn test_satisfies_conditions11() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::satisfies_conditions(vec![vec![7]]), true);
     }
 
-    // Java: void satisfiesConditions12()
-    //   int[][] grid = {
-    //   {4, 1, 5, 2},
-    //   {3, 0, 4, 1}
-    //   };
-    //   assertThat(new Solution().satisfiesConditions(grid), equalTo(false));
     #[test]
     fn test_satisfies_conditions12() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(
+            Solution::satisfies_conditions(vec![vec![4, 1, 5, 2], vec![3, 0, 4, 1]]),
+            false
+        );
     }
 
-    // Java: void satisfiesConditions13()
-    //   int[][] grid = {
-    //   {2, 3, 3, 1},
-    //   {1, 0, 4, 2}
-    //   };
-    //   assertThat(new Solution().satisfiesConditions(grid), equalTo(false));
     #[test]
     fn test_satisfies_conditions13() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(
+            Solution::satisfies_conditions(vec![vec![2, 3, 3, 1], vec![1, 0, 4, 2]]),
+            false
+        );
     }
 }

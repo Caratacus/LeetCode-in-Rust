@@ -1,10 +1,53 @@
 // Problem 3132: find the integer added to array ii
+// #Medium #Array #Sorting #Hash_Table #2024_04_27_Time_O(n log n)_Space_O(n)
 
 pub struct Solution;
 
 impl Solution {
     pub fn minimum_added_integer(nums1: Vec<i32>, nums2: Vec<i32>) -> i32 {
-        todo!()
+        let mut nums1 = nums1;
+        let nums2 = nums2;
+        nums1.sort();
+        let mut nums2_sorted = nums2.clone();
+        nums2_sorted.sort();
+
+        // Try x = nums2[0] - nums1[i] for i in 0, 1, 2
+        for i in 0..3 {
+            let x = nums2_sorted[0] - nums1[i];
+            if Self::check_ok(&nums1, &nums2, x) {
+                return x;
+            }
+        }
+        // Try x = nums2[1] - nums1[i] for i in 0, 1, 2
+        for i in 0..3 {
+            let x = nums2_sorted[1] - nums1[i];
+            if Self::check_ok(&nums1, &nums2, x) {
+                return x;
+            }
+        }
+        // Try x = nums2[2] - nums1[i] for i in 0, 1, 2
+        for i in 0..3 {
+            let x = nums2_sorted[2] - nums1[i];
+            if Self::check_ok(&nums1, &nums2, x) {
+                return x;
+            }
+        }
+
+        nums2_sorted[0] - nums1[0]
+    }
+
+    fn check_ok(nums1: &[i32], nums2: &[i32], x: i32) -> bool {
+        let mut i = 0;
+        for &num in nums2 {
+            while i < nums1.len() && nums1[i] + x < num {
+                i += 1;
+            }
+            if i >= nums1.len() || nums1[i] + x != num {
+                return false;
+            }
+            i += 1;
+        }
+        true
     }
 }
 
@@ -12,70 +55,27 @@ impl Solution {
 mod tests {
     use super::*;
 
-    // Java: void minimumAddedInteger()
-    //   assertThat(
-    //   new Solution()
-    //   .minimumAddedInteger(new int[] {4, 20, 16, 12, 8}, new int[] {14, 18, 10}),
-    //   equalTo(-2));
     #[test]
     fn test_minimum_added_integer() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(
+            Solution::minimum_added_integer(vec![4, 20, 16, 12, 8], vec![14, 18, 10]),
+            -2
+        );
     }
 
-    // Java: void minimumAddedInteger2()
-    //   assertThat(
-    //   new Solution().minimumAddedInteger(new int[] {3, 5, 5, 3}, new int[] {7, 7}),
-    //   equalTo(2));
     #[test]
     fn test_minimum_added_integer2() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::minimum_added_integer(vec![3, 5, 5, 3], vec![7, 7]), 2);
     }
 
-    // Java: void minimumAddedInteger3()
-    //   assertThat(
-    //   new Solution().minimumAddedInteger(new int[] {10, 20, 30, 40}, new int[] {35, 45}),
-    //   equalTo(5));
     #[test]
     fn test_minimum_added_integer3() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void minimumAddedInteger4()
-    //   assertThat(
-    //   new Solution().minimumAddedInteger(new int[] {2, 5, 7, 8}, new int[] {9, 10}),
-    //   equalTo(2));
-    #[test]
-    fn test_minimum_added_integer4() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void minimumAddedInteger5()
-    //   assertThat(
-    //   new Solution().minimumAddedInteger(new int[] {2, 2, 2, 4, 4}, new int[] {6, 6, 8}),
-    //   equalTo(4));
-    #[test]
-    fn test_minimum_added_integer5() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void minimumAddedInteger6()
-    //   assertThat(
-    //   new Solution().minimumAddedInteger(new int[] {5, 5, 5, 5}, new int[] {5, 5}),
-    //   equalTo(0));
-    #[test]
-    fn test_minimum_added_integer6() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void minimumAddedInteger7()
-    //   assertThat(
-    //   new Solution()
-    //   .minimumAddedInteger(
-    //   new int[] {1_000_000, 2_000_000, 3_000_000, 4_000_000},
-    //   new int[] {3_000_002, 4_000_002}),
-    //   ... (1 more lines)
-    #[test]
-    fn test_minimum_added_integer7() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(
+            Solution::minimum_added_integer(
+                vec![4, 6, 3, 1, 4, 2, 1, 8, 5, 2],
+                vec![1, 8, 6, 3, 4, 5, 2]
+            ),
+            0
+        );
     }
 }

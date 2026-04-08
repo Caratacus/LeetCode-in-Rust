@@ -1,10 +1,29 @@
 // Problem 3121: count the number of special characters ii
+// #Medium #String #Hash_Table #2024_04_27_Time_6_ms_(100.00%)_Space_45.2_MB_(97.93%)
 
 pub struct Solution;
 
 impl Solution {
     pub fn number_of_special_chars(word: String) -> i32 {
-        todo!()
+        let mut small: [i32; 26] = [-1; 26];
+        let mut capital: [i32; 26] = [i32::MAX; 26];
+        let mut result = 0;
+        for (i, a) in word.chars().enumerate() {
+            let idx = i as i32;
+            if (a as u8) < 91 {
+                let pos = (a as usize) - 65;
+                capital[pos] = capital[pos].min(idx);
+            } else {
+                let pos = (a as usize) - 97;
+                small[pos] = idx;
+            }
+        }
+        for i in 0..26 {
+            if small[i] != -1 && capital[i] != i32::MAX && capital[i] > small[i] {
+                result += 1;
+            }
+        }
+        result
     }
 }
 
@@ -12,24 +31,18 @@ impl Solution {
 mod tests {
     use super::*;
 
-    // Java: void numberOfSpecialChars()
-    //   assertThat(new Solution().numberOfSpecialChars("aaAbcBC"), equalTo(3));
     #[test]
     fn test_number_of_special_chars() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::number_of_special_chars(String::from("aaAbcBC")), 3);
     }
 
-    // Java: void numberOfSpecialChars2()
-    //   assertThat(new Solution().numberOfSpecialChars("abc"), equalTo(0));
     #[test]
     fn test_number_of_special_chars2() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::number_of_special_chars(String::from("abc")), 0);
     }
 
-    // Java: void numberOfSpecialChars3()
-    //   assertThat(new Solution().numberOfSpecialChars("AbBCab"), equalTo(0));
     #[test]
     fn test_number_of_special_chars3() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::number_of_special_chars(String::from("AbBCab")), 0);
     }
 }

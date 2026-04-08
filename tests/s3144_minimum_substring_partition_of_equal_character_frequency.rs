@@ -10,4 +10,3 @@ fn test_minimum_substrings_in_partition() {
 fn test_minimum_substrings_in_partition2() {
     assert_eq!(Solution::minimum_substrings_in_partition(String::from("abababaccddb")), 2);
 }
-}

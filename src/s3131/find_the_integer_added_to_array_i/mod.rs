@@ -1,10 +1,22 @@
 // Problem 3131: find the integer added to array i
+// #Easy #Array #2024_04_02_Time_0 ms(100.00%)  Space 43 MB (75.29%)
 
 pub struct Solution;
 
 impl Solution {
     pub fn added_integer(nums1: Vec<i32>, nums2: Vec<i32>) -> i32 {
-        todo!()
+        let n1 = nums1.len();
+        let mut s1 = 0;
+        let mut s2 = 0;
+
+        for i in nums1 {
+            s1 += i;
+        }
+        for i in nums2 {
+            s2 += i;
+        }
+
+        (s2 - s1) / n1 as i32
     }
 }
 
@@ -12,27 +24,18 @@ impl Solution {
 mod tests {
     use super::*;
 
-    // Java: void addedInteger()
-    //   assertThat(
-    //   new Solution().addedInteger(new int[] {2, 6, 4}, new int[] {9, 7, 5}), equalTo(3));
     #[test]
     fn test_added_integer() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::added_integer(vec![2, 6, 4], vec![9, 7, 5]), 3);
     }
 
-    // Java: void addedInteger2()
-    //   assertThat(new Solution().addedInteger(new int[] {10}, new int[] {5}), equalTo(-5));
     #[test]
     fn test_added_integer2() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::added_integer(vec![10], vec![5]), -5);
     }
 
-    // Java: void addedInteger3()
-    //   assertThat(
-    //   new Solution().addedInteger(new int[] {1, 1, 1, 1}, new int[] {1, 1, 1, 1}),
-    //   equalTo(0));
     #[test]
     fn test_added_integer3() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::added_integer(vec![1, 1, 1, 1], vec![1, 1, 1, 1]), 0);
     }
 }

@@ -4,5 +4,5 @@
 use leetcode_in_rust::s3148::maximum_difference_score_in_a_grid::Solution;
 #[test]
 fn test_max_score() {
-    assert_eq!(Solution::max_score(vec![vec![4, 3, 2}, vec![0, 2]]), 9);
+    assert_eq!(Solution::max_score(vec![vec![4, 3, 2], vec![0, 2]]), 9);
 }

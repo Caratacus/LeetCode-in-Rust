@@ -1,10 +1,19 @@
 // Problem 3146: permutation difference between two strings
+// #Easy #String #Hash_Table #2024_05_15_Time_1_ms_(100.00%)_Space_42.4_MB_(84.38%)
 
 pub struct Solution;
 
 impl Solution {
     pub fn find_permutation_difference(s: String, t: String) -> i32 {
-        todo!()
+        let mut res = [-1; 26];
+        let mut sum = 0;
+        for (i, c) in s.chars().enumerate() {
+            res[(c as usize) - ('a' as usize)] = i as i32;
+        }
+        for (i, c) in t.chars().enumerate() {
+            sum += (res[(c as usize) - ('a' as usize)] - i as i32).abs();
+        }
+        sum
     }
 }
 
@@ -12,17 +21,19 @@ impl Solution {
 mod tests {
     use super::*;
 
-    // Java: void findPermutationDifference()
-    //   assertThat(new Solution().findPermutationDifference("abc", "bac"), equalTo(2));
     #[test]
     fn test_find_permutation_difference() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(
+            Solution::find_permutation_difference("abc".to_string(), "bac".to_string()),
+            2
+        );
     }
 
-    // Java: void findPermutationDifference2()
-    //   assertThat(new Solution().findPermutationDifference("abcde", "edbac"), equalTo(12));
     #[test]
     fn test_find_permutation_difference2() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(
+            Solution::find_permutation_difference("abcde".to_string(), "edbac".to_string()),
+            12
+        );
     }
 }
