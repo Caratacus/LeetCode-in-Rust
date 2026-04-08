@@ -1,10 +1,21 @@
 // Problem 3019: number of changing keys
+// #Easy #String #Breadth_First_Search #Graph #Prefix_Sum
 
 pub struct Solution;
 
 impl Solution {
     pub fn count_key_changes(s: String) -> i32 {
-        todo!()
+        let s = s.to_lowercase();
+        let chars: Vec<char> = s.chars().collect();
+        let mut count = 0;
+
+        for i in 0..chars.len() - 1 {
+            if chars[i] != chars[i + 1] {
+                count += 1;
+            }
+        }
+
+        count
     }
 }
 
@@ -12,17 +23,13 @@ impl Solution {
 mod tests {
     use super::*;
 
-    // Java: void countKeyChanges()
-    //   assertThat(new Solution().countKeyChanges("aAbBcC"), equalTo(2));
     #[test]
     fn test_count_key_changes() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::count_key_changes("aAbBcC".to_string()), 2);
     }
 
-    // Java: void countKeyChanges2()
-    //   assertThat(new Solution().countKeyChanges("AaAaAaaA"), equalTo(0));
     #[test]
     fn test_count_key_changes2() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::count_key_changes("AaAaAaaA".to_string()), 0);
     }
 }

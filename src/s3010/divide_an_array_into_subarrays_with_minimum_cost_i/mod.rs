@@ -1,10 +1,22 @@
 // Problem 3010: divide an array into subarrays with minimum cost i
+// #Easy #Array #Sorting #Enumeration #2024_02_27_Time_1_ms_(99.09%)_Space_43.6_MB_(96.36%)
 
 pub struct Solution;
 
 impl Solution {
     pub fn minimum_cost(nums: Vec<i32>) -> i32 {
-        todo!()
+        let first = nums[0];
+        let mut min = 51;
+        let mut sec_min = 52;
+        for i in 1..nums.len() {
+            if nums[i] < min {
+                sec_min = min;
+                min = nums[i];
+            } else if nums[i] < sec_min {
+                sec_min = nums[i];
+            }
+        }
+        first + min + sec_min
     }
 }
 
@@ -12,24 +24,18 @@ impl Solution {
 mod tests {
     use super::*;
 
-    // Java: void minimumCost()
-    //   assertThat(new Solution().minimumCost(new int[] {1, 2, 3, 12}), equalTo(6));
     #[test]
     fn test_minimum_cost() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::minimum_cost(vec![1, 2, 3, 12]), 6);
     }
 
-    // Java: void minimumCost2()
-    //   assertThat(new Solution().minimumCost(new int[] {5, 4, 3}), equalTo(12));
     #[test]
     fn test_minimum_cost2() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::minimum_cost(vec![5, 4, 3]), 12);
     }
 
-    // Java: void minimumCost3()
-    //   assertThat(new Solution().minimumCost(new int[] {10, 3, 1, 1}), equalTo(12));
     #[test]
     fn test_minimum_cost3() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::minimum_cost(vec![10, 3, 1, 1]), 12);
     }
 }

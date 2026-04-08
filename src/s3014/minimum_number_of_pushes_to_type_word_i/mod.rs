@@ -1,10 +1,29 @@
 // Problem 3014: minimum number of pushes to type word i
+// #Easy #String #Math #Greedy
 
 pub struct Solution;
 
 impl Solution {
     pub fn minimum_pushes(word: String) -> i32 {
-        todo!()
+        let len = word.len();
+        if len <= 8 {
+            return len as i32;
+        } else {
+            let mut iteration = 1;
+            let mut len = len;
+            let mut count = 0;
+            while len > 0 {
+                if len >= 8 {
+                    count += 8 * iteration;
+                    len -= 8;
+                } else {
+                    count += len * iteration;
+                    len = 0;
+                }
+                iteration += 1;
+            }
+            count as i32
+        }
     }
 }
 
@@ -12,17 +31,13 @@ impl Solution {
 mod tests {
     use super::*;
 
-    // Java: void minimumPushes()
-    //   assertThat(new Solution().minimumPushes("abcde"), equalTo(5));
     #[test]
     fn test_minimum_pushes() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::minimum_pushes("abcde".to_string()), 5);
     }
 
-    // Java: void minimumPushes2()
-    //   assertThat(new Solution().minimumPushes("xycdefghij"), equalTo(12));
     #[test]
     fn test_minimum_pushes2() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::minimum_pushes("xycdefghij".to_string()), 12);
     }
 }

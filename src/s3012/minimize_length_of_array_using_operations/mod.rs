@@ -1,10 +1,37 @@
 // Problem 3012: minimize length of array using operations
+// #Medium #Array #Math #Greedy #Number_Theory
 
 pub struct Solution;
 
 impl Solution {
     pub fn minimum_array_length(nums: Vec<i32>) -> i32 {
-        todo!()
+        let mut min = nums[0];
+        let mut max = nums[0];
+        for &i in &nums {
+            if i < min {
+                min = i;
+            }
+            if i > max {
+                max = i;
+            }
+        }
+        let n = nums.len();
+        if n == 1 {
+            return 1;
+        }
+        if max % min != 0 {
+            return 1;
+        }
+        let mut count = 0;
+        for &i in &nums {
+            if i % min != 0 && i % min < min {
+                return 1;
+            }
+            if i == min {
+                count += 1;
+            }
+        }
+        (count + 1) / 2
     }
 }
 
@@ -12,24 +39,18 @@ impl Solution {
 mod tests {
     use super::*;
 
-    // Java: void minimumArrayLength()
-    //   assertThat(new Solution().minimumArrayLength(new int[] {1, 4, 3, 1}), equalTo(1));
     #[test]
     fn test_minimum_array_length() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::minimum_array_length(vec![1, 4, 3, 1]), 1);
     }
 
-    // Java: void minimumArrayLength2()
-    //   assertThat(new Solution().minimumArrayLength(new int[] {5, 5, 5, 10, 5}), equalTo(2));
     #[test]
     fn test_minimum_array_length2() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::minimum_array_length(vec![5, 5, 5, 10, 5]), 2);
     }
 
-    // Java: void minimumArrayLength3()
-    //   assertThat(new Solution().minimumArrayLength(new int[] {2, 3, 4}), equalTo(1));
     #[test]
     fn test_minimum_array_length3() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::minimum_array_length(vec![2, 3, 4]), 1);
     }
 }

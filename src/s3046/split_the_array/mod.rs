@@ -1,10 +1,22 @@
-// Problem 3046: split the array
+// Problem 3046: Split the Array
+// #Easy #Array #Hash_Table #Counting
+// #Big_O_Time_O(n)_Space_O(1)
 
 pub struct Solution;
 
 impl Solution {
     pub fn is_possible_to_split(nums: Vec<i32>) -> bool {
-        todo!()
+        let mut count = [0i32; 101];
+        for &n in &nums {
+            let idx = n as usize;
+            if idx < 101 {
+                count[idx] += 1;
+                if count[idx] > 2 {
+                    return false;
+                }
+            }
+        }
+        true
     }
 }
 
@@ -12,17 +24,13 @@ impl Solution {
 mod tests {
     use super::*;
 
-    // Java: void isPossibleToSplit()
-    //   assertThat(new Solution().isPossibleToSplit(new int[] {1, 1, 2, 2, 3, 4}), equalTo(true));
     #[test]
     fn test_is_possible_to_split() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::is_possible_to_split(vec![1, 1, 2, 2, 3, 4]), true);
     }
 
-    // Java: void isPossibleToSplit2()
-    //   assertThat(new Solution().isPossibleToSplit(new int[] {1, 1, 1, 1}), equalTo(false));
     #[test]
     fn test_is_possible_to_split2() {
-        // TODO: 翻译 Java 测试
+        assert_eq!(Solution::is_possible_to_split(vec![1, 1, 1, 1]), false);
     }
 }
