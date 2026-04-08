@@ -1,0 +1,14 @@
+// Tests for Problem 3347: Maximum Frequency of an Element After Performing Operations II
+// Java reference: src/test/java/g3301_3400/s3347_maximum_frequency_of_an_element_after_performing_operations_ii/SolutionTest.java
+
+use leetcode_in_rust::s3347::maximum_frequency_of_an_element_after_performing_operations_ii::Solution;
+
+#[test]
+fn test_max_frequency() {
+    assert_eq!(Solution::max_frequency(vec![1, 4, 5], 1, 2), 2);
+}
+
+#[test]
+fn test_max_frequency2() {
+    assert_eq!(Solution::max_frequency(vec![5, 11, 20, 20], 5, 1), 2);
+}
