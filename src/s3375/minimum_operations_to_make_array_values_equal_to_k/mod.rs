@@ -1,35 +1,24 @@
-// Problem 3375: minimum operations to make array values equal to k
+// Problem 3375: Minimum Operations to Make Array Values Equal to K
+// #Easy #Array #Hash_Table
+
+use std::collections::HashSet;
 
 pub struct Solution;
 
 impl Solution {
     pub fn min_operations(nums: Vec<i32>, k: i32) -> i32 {
-        todo!()
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    // Java: void minOperations()
-    //   assertThat(new Solution().minOperations(new int[] {5, 2, 5, 4, 5}, 2), equalTo(2));
-    #[test]
-    fn test_min_operations() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void minOperations2()
-    //   assertThat(new Solution().minOperations(new int[] {2, 1, 2}, 2), equalTo(-1));
-    #[test]
-    fn test_min_operations2() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void minOperations3()
-    //   assertThat(new Solution().minOperations(new int[] {9, 7, 5, 3}, 1), equalTo(4));
-    #[test]
-    fn test_min_operations3() {
-        // TODO: 翻译 Java 测试
+        let mut set: HashSet<i32> = HashSet::new();
+        for &i in &nums {
+            set.insert(i);
+        }
+        let mut res = 0;
+        for &i in &set {
+            if i > k {
+                res += 1;
+            } else if i < k {
+                return -1;
+            }
+        }
+        res
     }
 }

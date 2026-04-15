@@ -1,42 +1,30 @@
-// Problem 3371: identify the largest outlier in an array
+// Problem 3371: Identify the Largest Outlier in an Array
+// #Medium #Array #Hash_Table #Counting #Enumeration
 
 pub struct Solution;
 
 impl Solution {
     pub fn get_largest_outlier(nums: Vec<i32>) -> i32 {
-        todo!()
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    // Java: void getLargestOutlier()
-    //   assertThat(new Solution().getLargestOutlier(new int[] {2, 3, 5, 10}), equalTo(10));
-    #[test]
-    fn test_get_largest_outlier() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void getLargestOutlier2()
-    //   assertThat(new Solution().getLargestOutlier(new int[] {-2, -1, -3, -6, 4}), equalTo(4));
-    #[test]
-    fn test_get_largest_outlier2() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void getLargestOutlier3()
-    //   assertThat(new Solution().getLargestOutlier(new int[] {1, 1, 1, 1, 1, 5, 5}), equalTo(5));
-    #[test]
-    fn test_get_largest_outlier3() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void getLargestOutlier4()
-    //   assertThat(new Solution().getLargestOutlier(new int[] {-108, -108, -517}), equalTo(-517));
-    #[test]
-    fn test_get_largest_outlier4() {
-        // TODO: 翻译 Java 测试
+        let mut cnt = vec![0i32; 2001];
+        let mut sum: i32 = 0;
+        for &i in &nums {
+            sum += i;
+            cnt[(i + 1000) as usize] += 1;
+        }
+        for i in (0..=2000).rev() {
+            let j = i as i32 - 1000;
+            if cnt[i] == 0 {
+                continue;
+            }
+            sum -= j;
+            let csum = (sum / 2) + 1000;
+            cnt[i] -= 1;
+            if sum % 2 == 0 && csum >= 0 && (csum as usize) < cnt.len() && cnt[csum as usize] > 0 {
+                return j;
+            }
+            sum += j;
+            cnt[i] += 1;
+        }
+        0
     }
 }

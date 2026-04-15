@@ -4,7 +4,17 @@ pub struct Solution;
 
 impl Solution {
     pub fn construct_transformed_array(nums: Vec<i32>) -> Vec<i32> {
-        todo!()
+        let n = nums.len();
+        let mut res = vec![0; n];
+        for i in 0..n {
+            if nums[i] > 0 {
+                res[i] = nums[((i as i32 + nums[i]) as usize) % n];
+            } else if nums[i] < 0 {
+                let r = nums[i].unsigned_abs() as usize / n;
+                res[i] = nums[((i as i32 + nums[i] + (r as i32) * (n as i32) + n as i32).unsigned_abs() as usize) % n];
+            }
+        }
+        res
     }
 }
 

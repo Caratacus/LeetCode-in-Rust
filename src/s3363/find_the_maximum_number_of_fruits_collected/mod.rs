@@ -1,33 +1,48 @@
-// Problem 3363: find the maximum number of fruits collected
+// Problem 3363: Find the Maximum Number of Fruits Collected
+// #Hard #Array #Dynamic_Programming #Matrix
 
 pub struct Solution;
 
 impl Solution {
-    pub fn max_collected_fruits(fruits: Vec<Vec<i32>>) -> i32 {
-        todo!()
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    // Java: void maxCollectedFruits()
-    //   assertThat(
-    //   new Solution()
-    //   .maxCollectedFruits(
-    //   new int[][] {
-    //   {1, 2, 3, 4}, {5, 6, 8, 7}, {9, 10, 11, 12}, {13, 14, 15, 16}
-    //   ... (2 more lines)
-    #[test]
-    fn test_max_collected_fruits() {
-        // TODO: 翻译 Java 测试
-    }
-
-    // Java: void maxCollectedFruits2()
-    //   assertThat(new Solution().maxCollectedFruits(new int[][] {{1, 1}, {1, 1}}), equalTo(4));
-    #[test]
-    fn test_max_collected_fruits2() {
-        // TODO: 翻译 Java 测试
+    pub fn max_collected_fruits(mut fruits: Vec<Vec<i32>>) -> i32 {
+        let n = fruits.len();
+        // Set inaccessible cells to 0
+        for i in 0..n {
+            for j in 0..n {
+                if i < j && j < n - 1 - i {
+                    fruits[i][j] = 0;
+                }
+                if j < i && i < n - 1 - j {
+                    fruits[i][j] = 0;
+                }
+            }
+        }
+        let mut res = 0;
+        for i in 0..n {
+            res += fruits[i][i];
+        }
+        // Process upper-right triangle
+        for i in 1..n {
+            for j in (i + 1)..n {
+                let mut max_val = fruits[i - 1][j - 1];
+                max_val = std::cmp::max(max_val, fruits[i - 1][j]);
+                if j + 1 < n {
+                    max_val = std::cmp::max(max_val, fruits[i - 1][j + 1]);
+                }
+                fruits[i][j] += max_val;
+            }
+        }
+        // Process lower-left triangle
+        for j in 1..n {
+            for i in (j + 1)..n {
+                let mut max_val = fruits[i - 1][j - 1];
+                max_val = std::cmp::max(max_val, fruits[i][j - 1]);
+                if i + 1 < n {
+                    max_val = std::cmp::max(max_val, fruits[i + 1][j - 1]);
+                }
+                fruits[i][j] += max_val;
+            }
+        }
+        res + fruits[n - 1][n - 2] + fruits[n - 2][n - 1]
     }
 }

@@ -1,10 +1,25 @@
-// Problem 3364: minimum positive sum subarray
+// Problem 3364: Minimum Positive Sum Subarray
+// #Easy #Array #Prefix_Sum #Sliding_Window
 
 pub struct Solution;
 
 impl Solution {
     pub fn minimum_sum_subarray(li: Vec<i32>, l: i32, r: i32) -> i32 {
-        todo!()
+        let n = li.len();
+        let mut min_sum = i32::MAX;
+        let mut prefix = vec![0i32; n + 1];
+        for i in 1..=n {
+            prefix[i] = prefix[i - 1] + li[i - 1];
+        }
+        for size in l as usize..=r as usize {
+            for i in (size - 1)..n {
+                let sum = prefix[i + 1] - prefix[i + 1 - size];
+                if sum > 0 && sum < min_sum {
+                    min_sum = sum;
+                }
+            }
+        }
+        if min_sum == i32::MAX { -1 } else { min_sum }
     }
 }
 

@@ -4,7 +4,32 @@ pub struct Solution;
 
 impl Solution {
     pub fn is_zero_array(nums: Vec<i32>, queries: Vec<Vec<i32>>) -> bool {
-        todo!()
+        let n = nums.len();
+        let mut sum: i64 = nums.iter().map(|&x| x as i64).sum();
+        if sum == 0 {
+            return true;
+        }
+        let mut diff = vec![0i64; n + 1];
+        for q in &queries {
+            let low = q[0] as usize;
+            let high = q[1] as usize;
+            diff[low] -= 1;
+            if high + 1 < n {
+                diff[high + 1] += 1;
+            }
+        }
+        let mut nums = nums;
+        for i in 0..n {
+            if i > 0 {
+                diff[i] += diff[i - 1];
+            }
+            nums[i] = (nums[i] as i64 + diff[i]) as i32;
+            sum += diff[i];
+            if nums[i] > 0 {
+                return false;
+            }
+        }
+        sum <= 0
     }
 }
 

@@ -2,7 +2,11 @@
 
 pub struct Solution;
 
-impl Solution {}
+impl Solution {
+    pub fn find_valid_pair(s: String) -> String {
+        todo!()
+    }
+}
 
 #[cfg(test)]
 mod tests {

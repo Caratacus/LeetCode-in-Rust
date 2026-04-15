@@ -4,7 +4,26 @@ pub struct Solution;
 
 impl Solution {
     pub fn beautiful_splits(nums: Vec<i32>) -> i32 {
-        todo!()
+        let n = nums.len();
+        let mut lcp = vec![vec![0i32; n + 1]; n + 1];
+        for i in (0..n).rev() {
+            for j in (0..n).rev() {
+                if nums[i] == nums[j] {
+                    lcp[i][j] = 1 + lcp[i + 1][j + 1];
+                }
+            }
+        }
+        let mut res = 0;
+        for i in 1..n {
+            for j in (i + 1)..n {
+                let lcp1 = lcp[0][i].min(i as i32).min((j - i) as i32);
+                let lcp2 = lcp[i][j].min((j - i) as i32).min((n - j) as i32);
+                if lcp1 >= i as i32 || lcp2 >= (j - i) as i32 {
+                    res += 1;
+                }
+            }
+        }
+        res
     }
 }
 

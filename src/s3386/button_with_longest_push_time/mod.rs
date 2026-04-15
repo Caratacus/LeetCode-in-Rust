@@ -4,7 +4,20 @@ pub struct Solution;
 
 impl Solution {
     pub fn button_with_longest_time(events: Vec<Vec<i32>>) -> i32 {
-        todo!()
+        let mut ans = 0;
+        let mut max_time = 0;
+        let mut last = 0;
+        for event in &events {
+            let diff = event[1] - last;
+            if diff > max_time {
+                max_time = diff;
+                ans = event[0];
+            } else if diff == max_time {
+                ans = ans.min(event[0]);
+            }
+            last = event[1];
+        }
+        ans
     }
 }
 

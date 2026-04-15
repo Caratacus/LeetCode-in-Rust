@@ -1,10 +1,38 @@
-// Problem 3362: zero array transformation iii
+// Problem 3362: Zero Array Transformation III
+// #Medium #Array #Sorting #Greedy #Heap_Priority_Queue #Prefix_Sum
+
+use std::collections::BinaryHeap;
 
 pub struct Solution;
 
 impl Solution {
     pub fn max_removal(nums: Vec<i32>, queries: Vec<Vec<i32>>) -> i32 {
-        todo!()
+        let mut queries = queries;
+        queries.sort_by_key(|q| q[0]);
+
+        let n = nums.len();
+        let mut last: BinaryHeap<i32> = BinaryHeap::new();
+        let mut diffs = vec![0i32; n + 1];
+        let mut idx = 0;
+        let mut cur = 0;
+
+        for i in 0..n {
+            while idx < queries.len() && queries[idx][0] == i as i32 {
+                last.push(queries[idx][1]);
+                idx += 1;
+            }
+            cur += diffs[i];
+            while cur < nums[i] {
+                match last.pop() {
+                    Some(r) if r >= i as i32 => {
+                        cur += 1;
+                        diffs[(r + 1) as usize] -= 1;
+                    }
+                    _ => return -1,
+                }
+            }
+        }
+        last.len() as i32
     }
 }
 

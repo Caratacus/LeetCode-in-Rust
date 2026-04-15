@@ -1,10 +1,32 @@
-// Problem 3365: rearrange k substrings to form target string
+// Problem 3365: Rearrange K Substrings to Form Target String
+// #Medium #String #Hash_Table #Sorting
+
+use std::collections::HashMap;
 
 pub struct Solution;
 
 impl Solution {
     pub fn is_possible_to_rearrange(s: String, t: String, k: i32) -> bool {
-        todo!()
+        let size = s.len();
+        let div = size / k as usize;
+        let mut map: HashMap<&str, i32> = HashMap::new();
+        for i in (0..size).step_by(div) {
+            let sub = &s[i..i + div];
+            *map.entry(sub).or_insert(0) += 1;
+        }
+        for i in (0..size).step_by(div) {
+            let sub = &t[i..i + div];
+            if let Some(count) = map.get_mut(sub) {
+                if *count > 0 {
+                    *count -= 1;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        true
     }
 }
 

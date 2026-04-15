@@ -4,7 +4,19 @@ pub struct Solution;
 
 impl Solution {
     pub fn minimum_operations(grid: Vec<Vec<i32>>) -> i32 {
-        todo!()
+        let mut grid = grid;
+        let mut ans = 0i32;
+        let cols = grid[0].len();
+        let rows = grid.len();
+        for c in 0..cols {
+            for r in 1..rows {
+                if grid[r][c] <= grid[r - 1][c] {
+                    ans += grid[r - 1][c] + 1 - grid[r][c];
+                    grid[r][c] = grid[r - 1][c] + 1;
+                }
+            }
+        }
+        ans
     }
 }
 

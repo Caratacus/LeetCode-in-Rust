@@ -1,10 +1,39 @@
 // Problem 3393: count paths with the given xor value
+// #Medium #Array #Dynamic_Programming #Math #Matrix #Bit_Manipulation
+
+const MOD: i64 = 1_000_000_007;
 
 pub struct Solution;
 
 impl Solution {
     pub fn count_paths_with_xor_value(grid: Vec<Vec<i32>>, k: i32) -> i32 {
-        todo!()
+        let m = grid.len();
+        let n = grid[0].len();
+        let mut dp = vec![vec![[-1i64; 16]; n]; m];
+        Self::dfs(&grid, 0, k, 0, 0, &mut dp) as i32
+    }
+}
+
+impl Solution {
+    fn dfs(grid: &[Vec<i32>], xor_val: i32, k: i32, i: usize, j: usize, dp: &mut Vec<Vec<[i64; 16]>>) -> i64 {
+        let m = grid.len();
+        let n = grid[0].len();
+        let new_xor = xor_val ^ grid[i][j];
+        if dp[i][j][new_xor as usize] != -1 {
+            return dp[i][j][new_xor as usize];
+        }
+        if i == m - 1 && j == n - 1 {
+            return if new_xor == k { 1 } else { 0 };
+        }
+        let mut result = 0i64;
+        if i + 1 < m {
+            result = (result + Self::dfs(grid, new_xor, k, i + 1, j, dp)) % MOD;
+        }
+        if j + 1 < n {
+            result = (result + Self::dfs(grid, new_xor, k, i, j + 1, dp)) % MOD;
+        }
+        dp[i][j][new_xor as usize] = result;
+        result
     }
 }
 

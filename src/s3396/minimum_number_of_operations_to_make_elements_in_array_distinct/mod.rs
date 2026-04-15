@@ -4,7 +4,31 @@ pub struct Solution;
 
 impl Solution {
     pub fn minimum_operations(nums: Vec<i32>) -> i32 {
-        todo!()
+        use std::collections::HashMap;
+        let mut map: HashMap<i32, i32> = HashMap::new();
+        let mut dupct = 0;
+        for &num in &nums {
+            *map.entry(num).or_insert(0) += 1;
+            if map[&num] == 2 {
+                dupct += 1;
+            }
+        }
+        let n = nums.len();
+        let mut i = 0;
+        let mut op = 0;
+        while dupct > 0 {
+            op += 1;
+            let limit = (n).min(i + 3);
+            while i < limit {
+                let val = map[&nums[i]];
+                if val == 2 {
+                    dupct -= 1;
+                }
+                map.insert(nums[i], val - 1);
+                i += 1;
+            }
+        }
+        op
     }
 }
 

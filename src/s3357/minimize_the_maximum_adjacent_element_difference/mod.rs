@@ -1,10 +1,56 @@
-// Problem 3357: minimize the maximum adjacent element difference
+// Problem 3357: Minimize the Maximum Adjacent Element Difference
+// #Hard #Array #Greedy #Binary_Search
 
 pub struct Solution;
 
 impl Solution {
     pub fn min_difference(nums: Vec<i32>) -> i32 {
-        todo!()
+        let n = nums.len();
+        let mut max_adj = 0;
+        let mut mina = i32::MAX;
+        let mut maxb = i32::MIN;
+
+        for i in 0..n - 1 {
+            let a = nums[i];
+            let b = nums[i + 1];
+            if a > 0 && b > 0 {
+                max_adj = max_adj.max((a - b).abs());
+            } else if a > 0 || b > 0 {
+                mina = mina.min(a.max(b));
+                maxb = maxb.max(a.max(b));
+            }
+        }
+
+        let mut res = 0;
+        let mut i = 0;
+        while i < n {
+            if (i > 0 && nums[i - 1] == -1) || nums[i] > 0 {
+                i += 1;
+                continue;
+            }
+            let start = i;
+            while i < n && nums[i] == -1 {
+                i += 1;
+            }
+            let mut a = i32::MAX;
+            let mut b = i32::MIN;
+            if start > 0 {
+                a = a.min(nums[start - 1]);
+                b = b.max(nums[start - 1]);
+            }
+            if i < n {
+                a = a.min(nums[i]);
+                b = b.max(nums[i]);
+            }
+            if a <= b {
+                if i - start == 1 {
+                    res = res.max((maxb - a).min(b - mina));
+                } else {
+                    res = res.max((maxb - a).min((b - mina).min((maxb - mina + 2) / 3 * 2)));
+                }
+            }
+        }
+        max_adj.max((res + 1) / 2)
     }
 }
 

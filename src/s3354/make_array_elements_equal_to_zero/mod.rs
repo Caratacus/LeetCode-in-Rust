@@ -4,7 +4,28 @@ pub struct Solution;
 
 impl Solution {
     pub fn count_valid_selections(nums: Vec<i32>) -> i32 {
-        todo!()
+        let n = nums.len();
+        let mut left_sum = vec![0i32; n];
+        let mut right_sum = vec![0i32; n];
+        let mut result = 0;
+
+        for i in 1..n {
+            left_sum[i] = left_sum[i - 1] + nums[i - 1];
+        }
+        for j in (0..n - 1).rev() {
+            right_sum[j] = right_sum[j + 1] + nums[j + 1];
+        }
+        for k in 0..n {
+            if nums[k] == 0 {
+                let diff = (right_sum[k] - left_sum[k]).abs();
+                if diff == 1 {
+                    result += 1;
+                } else if diff == 0 {
+                    result += 2;
+                }
+            }
+        }
+        result
     }
 }
 

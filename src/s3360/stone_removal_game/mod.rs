@@ -1,10 +1,22 @@
-// Problem 3360: stone removal game
+// Problem 3360: Stone Removal Game
+// #Easy #Math #Simulation
 
 pub struct Solution;
 
 impl Solution {
     pub fn can_alice_win(n: i32) -> bool {
-        todo!()
+        if n < 10 {
+            return false;
+        }
+        let mut stones_remaining = n - 10;
+        let mut stones_to_be_removed = 9;
+        let mut i = 1;
+        while stones_remaining >= stones_to_be_removed {
+            stones_remaining -= stones_to_be_removed;
+            i += 1;
+            stones_to_be_removed -= 1;
+        }
+        i % 2 != 0
     }
 }
 

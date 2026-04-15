@@ -4,7 +4,33 @@ pub struct Solution;
 
 impl Solution {
     pub fn check_valid_cuts(m: i32, rectangles: Vec<Vec<i32>>) -> bool {
-        todo!()
+        let n = rectangles.len();
+        // Check vertical cuts (y-axis)
+        let mut start: Vec<u64> = rectangles.iter().map(|r| ((r[1] as u64) << 32) | (r[3] as u64)).collect();
+        start.sort();
+        if Self::validate(&start) {
+            return true;
+        }
+        // Check horizontal cuts (x-axis)
+        start = rectangles.iter().map(|r| ((r[0] as u64) << 32) | (r[2] as u64)).collect();
+        start.sort();
+        Self::validate(&start)
+    }
+
+    fn validate(arr: &[u64]) -> bool {
+        let mut cut = 0;
+        let mut max_end = (arr[0] & 0xFFFFFFFF) as i32;
+        for &l in arr {
+            let start = (l >> 32) as i32;
+            if start >= max_end {
+                cut += 1;
+                if cut == 2 {
+                    return true;
+                }
+            }
+            max_end = max_end.max((l & 0xFFFFFFFF) as i32);
+        }
+        false
     }
 }
 

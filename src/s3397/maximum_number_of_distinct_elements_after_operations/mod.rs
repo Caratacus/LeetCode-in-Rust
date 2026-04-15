@@ -4,7 +4,19 @@ pub struct Solution;
 
 impl Solution {
     pub fn max_distinct_elements(nums: Vec<i32>, k: i32) -> i32 {
-        todo!()
+        let mut nums = nums;
+        nums.sort();
+        let mut next = nums[0] - k + 1;
+        let mut ans = 1;
+        for i in 1..nums.len() {
+            if nums[i] + k < next {
+                continue;
+            }
+            next = next.max(nums[i] - k);
+            ans += 1;
+            next += 1;
+        }
+        ans
     }
 }
 

@@ -2,7 +2,11 @@
 
 pub struct Solution;
 
-impl Solution {}
+impl Solution {
+    pub fn earliest_finish_time(land_durations: Vec<i32>, land_gaps: Vec<i32>, water_durations: Vec<i32>, water_gaps: Vec<i32>) -> i32 {
+        todo!()
+    }
+}
 
 #[cfg(test)]
 mod tests {
